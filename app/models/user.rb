@@ -14,12 +14,12 @@ class User < ActiveRecord::Base
   attr_reader :password, :password2
 
   validate :passwords_match
-  validates :email, :username, :presence => true
-  validates :password, :length => { :minimum => 6, :allow_nil => true}
-  validates :password_digest, :presence => { :message => "Password can't be blank"}
+  validates :username, :presence => true
+  validates :password, :length => { :minimum => 6, :allow_nil => true }
+  validates :password_digest, :presence => { :message => "Password can't be blank" }
 
   has_many :sessions
-  has_many :images
+  has_many :steps
 
   def password2=(confirmation_password)
     @password2 = confirmation_password

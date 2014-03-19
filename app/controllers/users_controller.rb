@@ -3,6 +3,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    #returns all chains for a particular user
+    #helper method to select last few steps
+    @user = User.find(params[:id])
+    render json: @user
+  end
+
   def create
     @user = User.new(user_params)
 
