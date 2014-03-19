@@ -1,0 +1,5 @@
+development:
+  adapter: postgresql
+  database: doodle_dev
+  pool: 5
+  timeout: 5000
