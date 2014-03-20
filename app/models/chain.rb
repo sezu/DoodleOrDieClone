@@ -8,6 +8,7 @@
 #  is_completed :boolean          default(FALSE)
 #  created_at   :datetime
 #  updated_at   :datetime
+#  is_assigned  :boolean          default(TRUE)
 #
 
 class Chain < ActiveRecord::Base

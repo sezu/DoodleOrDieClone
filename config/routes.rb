@@ -17,9 +17,11 @@ DoodleOrDieClone::Application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
   resources :users, :only => [:new, :create, :show]
 
-  resources :rooms, :only => [:index, :show, :create, :update, :destroy] do
-    resources :steps, :only => [:create, :destroy, :index]
+  resources :rooms, :only => [:index, :show, :create, :update] do
+    resources :steps, :only => [:index]
   end
 
-  resources :chains, :only => [:index, :show, :create, :update, :destroy]
+  resources :chains, :only => [:index, :show, :create, :update] do
+    resources :steps, :only => [:create]
+  end
 end

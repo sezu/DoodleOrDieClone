@@ -9,7 +9,8 @@ class ChainsController < ApplicationController
   def show
     #return all steps for specific chain
     @chain = Chain.find(params[:id])
-    render json: @chain
+    @steps = @chain.steps
+    render json: @steps
   end
 
   def create

@@ -1,11 +1,11 @@
-DoodleOrDie.Collections.Steps = Backbone.Collection.extend({
+DoodleOrDie.Collections.UsersRoomSteps = Backbone.Collection.extend({
   model: DoodleOrDie.Models.Step,
 
   url: function(){
     return this.room.url() + "/steps"
   },
 
-  initialize: function(model, options) {
+  initialize: function(options) {
     this.room = options.room;
   },
 

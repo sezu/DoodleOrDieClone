@@ -1,10 +1,11 @@
 class StepsController < ApplicationController
   def index
-    #possibly use to play
-    #show all past user steps (pics only)
-    #get next chain to play on, user might need a current chain id.
-    #assign new chain id if chain doesn't exist/on skip
-    #display last step from that chain
+    #show all the steps in a room for a particular user
+    #possibly better to just get all of a users steps at once for every room
+    @room = Room.find(params[:room_id])
+    @steps = @room.steps.where(:user_id => current_user.id)
+
+    render json: @steps
   end
 
   def create

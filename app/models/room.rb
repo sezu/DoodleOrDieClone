@@ -14,4 +14,5 @@ class Room < ActiveRecord::Base
   validates :name, :is_public, :presence => true
 
   has_many :chains
+  has_many :steps, :through => :chains, :source => :steps
 end

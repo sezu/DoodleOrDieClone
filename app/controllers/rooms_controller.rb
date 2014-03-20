@@ -6,10 +6,14 @@ class RoomsController < ApplicationController
   end
 
   def show
-    #gets all chains for particular room
-    #return last few steps for each particular chain and room
+    #returns room -> chains -> steps
     @room = Room.find(params[:id])
-    render json: @room
+    @chains = @room.chains
+    @steps = {}
+
+    @chains.each do |chain|
+      @steps[chain.id] = chain.steps
+    end
   end
 
   def create

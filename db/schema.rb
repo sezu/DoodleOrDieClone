@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319205338) do
+ActiveRecord::Schema.define(version: 20140320045135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140319205338) do
     t.boolean  "is_completed", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_assigned",  default: true
   end
 
   add_index "chains", ["room_id"], name: "index_chains_on_room_id", using: :btree
