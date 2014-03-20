@@ -13,8 +13,8 @@ DoodleOrDie.Views.PostFormView = Backbone.View.extend({
   submit: function(event){
     event.preventDefault();
     var view = this;
-
     var params = $(event.currentTarget).serializeJSON()["room"];
+
     DoodleOrDie.rooms.create(params, {
       success: function() {
         view.remove()
