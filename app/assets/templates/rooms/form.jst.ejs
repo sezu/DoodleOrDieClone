@@ -1,0 +1,16 @@
+<form id="room-form">
+  <label for="name">Name</label>
+  <input type="text" name="room[name]" value="<%=room.escape('name')%>" id="name">
+
+  <label for="description">Description</label>
+  <textarea name="room[description]" value="<%=room.escape('description')%>" id="description"></textarea>
+
+  <br>
+  <input type="radio" name="room[is_public]" value="true">Public
+  <br>
+  <input type="radio" name="room[is_public]" value="false">Private
+  <br>
+
+
+  <button>Create Room!</button>
+</form>

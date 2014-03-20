@@ -1,0 +1,1 @@
+DoodleOrDie.Models.Chain = Backbone.Model.extend({});

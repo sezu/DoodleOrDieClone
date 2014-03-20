@@ -1,13 +1,26 @@
-window.DoodleOrDieClone = {
+window.DoodleOrDie = {
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    console.log("initializing...")
+
+    DoodleOrDie.rooms = new DoodleOrDie.Collections.Rooms();
+    DoodleOrDie.rooms.fetch({
+      success: function(){
+        console.log("success!")
+
+        new DoodleOrDie.Routers.AppRouter({
+          $rootEl: $('#content')
+        });
+
+        Backbone.history.start();
+      }
+    });
   }
 };
 
 $(document).ready(function(){
-  DoodleOrDieClone.initialize();
+  DoodleOrDie.initialize();
 });

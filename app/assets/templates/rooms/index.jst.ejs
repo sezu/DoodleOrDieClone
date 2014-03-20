@@ -1,0 +1,11 @@
+<% rooms.each(function(room) { %>
+  <div>
+    <a href="/#/rooms/<%=room.id%>"><%=room.escape("name")%></a>
+  </div>
+<% }); %>
+
+<p>Can't find what you're interested in?</p>
+<a href="#" id="new-room">Create room link/form</a>
+<p>Pop up modal later maybe</p>
+
+<div id="new-room-form"></div>

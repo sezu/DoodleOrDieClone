@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require underscore
 //= require backbone
 //= require doodle_or_die_clone
+//= require jquery.serializeJSON.min.js
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

@@ -1,0 +1,1 @@
+DoodleOrDie.Models.Room = Backbone.Model.extend({});
