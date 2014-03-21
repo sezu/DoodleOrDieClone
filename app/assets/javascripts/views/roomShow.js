@@ -32,7 +32,6 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
         model: lastStep
       })
       //need to add href to preview, perhaps use a 2nd step show view,
-      //or a chain show view for previews?
 
       view.addSubview("#chains", stepShow);
       stepShow.render();
@@ -56,7 +55,7 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
     if(!this.next_step){
       this.fetchStepToPlay();
     }
-    //show player's timeline and sumbit form(text/canvas)
+    //show player's timeline eventually
   },
 
   skip: function(){
@@ -84,7 +83,6 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
   },
 
   addNextStep: function() {
-    //maybe I dont even need a view here
     this.nextStepShow = new DoodleOrDie.Views.StepShowView({
       model: this.next_step
     })

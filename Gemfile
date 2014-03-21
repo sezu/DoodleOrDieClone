@@ -4,6 +4,11 @@ gem 'rails', '4.0.3'
 gem 'pg'
 gem 'annotate'
 gem 'pry-rails'
+gem 'figaro'
+
+gem 'paperclip'
+gem 'aws-sdk'
+
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass'
