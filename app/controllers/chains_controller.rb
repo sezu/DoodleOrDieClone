@@ -1,20 +1,13 @@
 class ChainsController < ApplicationController
-  def index
-    #find all chains / specially selected chains
-    #return last few steps for each chain (helper?)
-    @chains = Chain.all
-    render json: @chains
-  end
 
   def show
-    #return all steps for specific chain
+    #return chain and chain steps
     @chain = Chain.find(params[:id])
     @steps = @chain.steps
-    render json: @steps
   end
 
   def create
-    @chain = Chain.new(params[:room_id])
+    @chain = Chain.new(room_id: params[:room_id])
 
     if @chain.save
       render json: @chain
@@ -41,4 +34,5 @@ class ChainsController < ApplicationController
     @chain.destroy
     render json: nil
   end
+
 end

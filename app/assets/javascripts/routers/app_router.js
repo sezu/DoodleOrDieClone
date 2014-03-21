@@ -5,9 +5,10 @@ DoodleOrDie.Routers.AppRouter = Backbone.Router.extend({
 
   routes: {
     "":  "frontPage",
-    "rooms/:room_id/steps": "stepsIndex",
     "rooms/:id":  "roomShow",
     "rooms":  "roomsIndex",
+    "chains/:id": "chainShow",
+    "users/:id": "userShow" //not implemented yet
   },
 
   frontPage: function() {
@@ -27,34 +28,31 @@ DoodleOrDie.Routers.AppRouter = Backbone.Router.extend({
   },
 
   roomShow: function(id) {
-    //fetch chains for particular room, everything = id 1
-    //show images of chains
-    //add "play" button on that room
-    //clicking play should generate curr_chain_id for user, maybe?
     var room = DoodleOrDie.rooms.getOrFetch(id)
-    var chains = new DoodleOrDie.Collections.RoomChains({ room: room })
-    chains.fetch();
 
     var roomShowView = new DoodleOrDie.Views.RoomShowView({
-      model: room,
-      collection: chains
+      model: room
     })
 
     this._swapView(roomShowView)
   },
 
-  stepsIndex: function(room_id) {
-    //show timeline of current user's doodle steps for this particular room
-    //draw/describe on new/next chain
-    var room = DoodleOrDie.rooms.getOrFetch(room_id)
+  chainShow: function(id) {
+    var that = this
+    var chain = new DoodleOrDie.Models.Chain({ id: id })
 
-    //fetch steps
+    chain.fetch({
+      success: function() {
+        var chainShowView = new DoodleOrDie.Views.ChainShowView({
+          model: chain
+        })
 
-    var stepsIndexView = new DoodleOrDie.Views.StepsIndexView({
-
+        that._swapView(chainShowView)
+      },
+      error: function() {
+        //add some kind of error redirect?
+      }
     })
-
-    this._swapView(stepsIndexView)
   },
 
   _swapView: function(newView) {

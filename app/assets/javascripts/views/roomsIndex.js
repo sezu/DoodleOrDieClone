@@ -18,7 +18,6 @@ DoodleOrDie.Views.RoomsIndexView = Backbone.View.extend({
 
   showRoomForm: function(event) {
     //pop-up create room form, e.g. modal
-    debugger;
     event.preventDefault();
 
     //need to hide #new-room link

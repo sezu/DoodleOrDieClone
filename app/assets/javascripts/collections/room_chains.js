@@ -2,7 +2,7 @@ DoodleOrDie.Collections.RoomChains = Backbone.Collection.extend({
   model: DoodleOrDie.Models.Chain,
 
   url: function() {
-    return this.room.url()
+    return this.room.url() + "/chains"
   },
 
   initialize: function(options) {

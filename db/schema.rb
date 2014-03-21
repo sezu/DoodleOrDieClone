@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140320045135) do
     t.boolean  "is_completed", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_assigned",  default: true
+    t.boolean  "is_assigned",  default: false
   end
 
   add_index "chains", ["room_id"], name: "index_chains_on_room_id", using: :btree

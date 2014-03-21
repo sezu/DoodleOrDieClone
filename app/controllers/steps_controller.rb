@@ -1,11 +1,16 @@
 class StepsController < ApplicationController
-  def index
-    #show all the steps in a room for a particular user
-    #possibly better to just get all of a users steps at once for every room
+  def fetch_next_step
+    #grab a random valid step
     @room = Room.find(params[:room_id])
-    @steps = @room.steps.where(:user_id => current_user.id)
+    @valid_chain = @room.chains.where(:is_completed => false, :is_assigned => false).sample
 
-    render json: @steps
+    if @valid_chain
+      #@valid_chain.update_attributes(:is_assigned => true)
+      render json: @valid_chain.steps.last
+    else
+      #create a new chain? or something?
+      render json: { errors: "kwrgwojhfwfoh" }, status: 404
+    end
   end
 
   def create

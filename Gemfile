@@ -25,4 +25,5 @@ gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'debugger'
 end

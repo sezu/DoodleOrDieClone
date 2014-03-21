@@ -12,7 +12,8 @@ DoodleOrDie.Collections.Rooms = Backbone.Collection.extend({
      } else {
        model = new DoodleOrDie.Models.Room({id: id});
        model.fetch({
-         success: function() { collection.add(model) }
+         success: function() {
+           collection.add(model) }
        });
      }
      return model;

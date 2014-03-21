@@ -17,11 +17,12 @@ DoodleOrDieClone::Application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
   resources :users, :only => [:new, :create, :show]
 
-  resources :rooms, :only => [:index, :show, :create, :update] do
-    resources :steps, :only => [:index]
+  resources :rooms, :only => [:index, :show, :create, :update], defaults: {:format => :json} do
+    get "fetch_step", to: "steps#fetch_next_step"
+    resources :chains, :only =>  [:create]
   end
 
-  resources :chains, :only => [:index, :show, :create, :update] do
+  resources :chains, :only => [:show, :update] do
     resources :steps, :only => [:create]
   end
 end

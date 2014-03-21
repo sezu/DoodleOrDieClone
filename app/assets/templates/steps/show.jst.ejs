@@ -1,0 +1,16 @@
+<div data-id="<%=step.id%>" class="step">
+<% if(step.is_image()) { %>
+  <div class="step-url" data-chain_id="<%=step.escape("chain_id")%>">
+    <%=step.escape("url")%>
+    <!-- should parse image instead of displaying URL -->
+  </div>
+<% } else { %>
+  <div class="step-desc" data-chain_id="<%=step.escape("chain_id")%>">
+    <%=step.escape("description")%>
+  </div>
+<% }; %>
+</div>
+
+<!-- Try to fix later, currently doubley nested div -->
+
+<!-- href="#/chains/<%=step.escape("chain_id")%>" -->

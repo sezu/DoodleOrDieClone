@@ -15,5 +15,5 @@ class Chain < ActiveRecord::Base
   validates :room_id, :presence => true;
 
   belongs_to :room
-  has_many :steps
+  has_many :steps, :dependent => :destroy
 end
