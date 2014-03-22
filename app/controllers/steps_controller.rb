@@ -16,7 +16,6 @@ class StepsController < ApplicationController
   def create
     @step = Step.new(step_params)
     @step.user_id = current_user.id
-    @step.chain_id = params[:chain_id]
 
     #add some kind of presence check for either desc/url
 
@@ -37,6 +36,6 @@ class StepsController < ApplicationController
   private
 
   def step_params
-    params.require(:step).permit(:description, :url)
+    params.require(:step).permit(:description, :url, :chain_id)
   end
 end

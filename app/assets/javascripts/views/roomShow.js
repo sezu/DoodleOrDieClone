@@ -9,7 +9,7 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
     "click #play-now": "play",
     "click #explore-room" : "explore",
     "click #skip": "skip",
-    "click #submit-step": "submit"
+    "submit #step-form": "submit"
   },
 
   render: function() {
@@ -31,7 +31,6 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
       var stepShow = new DoodleOrDie.Views.StepShowView({
         model: lastStep
       })
-      //need to add href to preview, perhaps use a 2nd step show view,
 
       view.addSubview("#chains", stepShow);
       stepShow.render();
@@ -98,7 +97,7 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
       this.removeSubview("#step-form", this.stepForm);
 
     this.stepForm = new DoodleOrDie.Views.StepFormView({
-      model: this.next_step
+      lastStep: this.next_step
     })
 
     this.addSubview("#step-form", this.stepForm);
@@ -107,9 +106,27 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
 
   submit: function(event) {
     event.preventDefault()
-    debugger;
-    //create new step
 
+    var chain_id = this.next_step.get("chain_id")
+
+    //if(this.next_step.is_image()){
+    var params = $(event.currentTarget).serializeJSON()["step"];
+    //} else {
+      //create image params instead?
+    //}
+
+    if(chain_id) {
+      //create new step
+      //might be making this on wrong collection
+      _.extend(params, { chain_id: chain_id })
+      this.model.chains().get(chain_id).steps().create(params)
+
+    } else {
     //create new chain and new step if no chain_id
+
+    }
+
+    this.removeSubview("#last-step", this.nextStepShow)
+    this.fetchStepToPlay();
   }
 })

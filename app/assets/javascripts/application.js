@@ -16,6 +16,12 @@
 //= require backbone
 //= require doodle_or_die_clone
 //= require jquery.serializeJSON.min.js
+
+//= require Color.Picker.Custom.js
+//= require Color.Space.js
+//= require Event.js
+//= require Sketch.js
+
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
