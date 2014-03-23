@@ -36,6 +36,6 @@ class StepsController < ApplicationController
   private
 
   def step_params
-    params.require(:step).permit(:description, :url, :chain_id)
+    params.require(:step).permit(:description, :image, :chain_id)
   end
 end

@@ -83,7 +83,9 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
 
   addNextStep: function() {
     this.nextStepShow = new DoodleOrDie.Views.StepShowView({
-      model: this.next_step
+      model: this.next_step,
+      //needed to add a unique id tag to nextstep view
+      playing: "play"
     })
 
     this.addSubview("#last-step", this.nextStepShow);
@@ -109,11 +111,11 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
 
     var chain_id = this.next_step.get("chain_id")
 
-    //if(this.next_step.is_image()){
-    var params = $(event.currentTarget).serializeJSON()["step"];
-    //} else {
-      //create image params instead?
-    //}
+    if(this.next_step.is_image()){
+      var params = $(event.currentTarget).serializeJSON()["step"];
+    } else {
+      var params = { image: this.stepForm.sketch.toString() }
+    }
 
     if(chain_id) {
       //create new step

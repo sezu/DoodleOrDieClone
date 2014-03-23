@@ -6,7 +6,7 @@
 #  user_id     :integer
 #  chain_id    :integer
 #  description :text
-#  url         :string(255)
+#  image       :text
 #  created_at  :datetime
 #  updated_at  :datetime
 #

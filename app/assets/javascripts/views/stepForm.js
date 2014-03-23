@@ -6,6 +6,14 @@ DoodleOrDie.Views.StepFormView = Backbone.View.extend({
 
   initialize: function(options){
     this.lastStep = options.lastStep
+    this.brushSize = 5;
+  },
+
+  events: {
+    "click .brush-size": "changeBrushSize",
+    "click #undo": "undo",
+    "click #animate": "animate",
+    "click #clear": "clear"
   },
 
   render: function(){
@@ -34,11 +42,38 @@ DoodleOrDie.Views.StepFormView = Backbone.View.extend({
       eyedropLayer: this.sketch.layer[1],
       eyedropMouseLayer: this.sketch.layer[2],
       display: true,
-      //container: document.getElementById("color-picker"),
+      container: document.getElementById("color-picker"),
       callback: function(rgba, state, type, self) {
         that.sketch.style.strokeStyle = Color.Space(rgba, "RGBA>W3");;
       }
     });
+  },
+
+  changeBrushSize: function(event) {
+    event.preventDefault();
+
+    //update sketch style
+    this.brushSize = $(event.currentTarget).data("size")
+    this.sketch.style.lineWidth = this.brushSize;
+
+    //update brush controls
+    $("#current-size").text("Brush Size: " + this.brushSize)
+    $("#size-slider").val(this.brushSize)
+  },
+
+  undo: function(event) {
+    event.preventDefault();
+    this.sketch.undo();
+  },
+
+  clear: function(event) {
+    event.preventDefault();
+    this.sketch.clearRecording();
+  },
+
+  animate: function(event) {
+    event.preventDefault();
+    this.sketch.redrawAnimate();
   }
   //this file is used for changing paint toolbox stuff
   //lots of events probably

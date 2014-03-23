@@ -8,6 +8,6 @@ DoodleOrDie.Models.NextStep = Backbone.Model.extend({
   },
 
   is_image: function () {
-    return (this.get("url") ? true : false)
+    return (this.get("image") ? true : false)
   }
 });

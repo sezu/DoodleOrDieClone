@@ -48,6 +48,16 @@ DoodleOrDie.Routers.AppRouter = Backbone.Router.extend({
         })
 
         that._swapView(chainShowView)
+
+        //Hack to get canvas elements placed correctly
+        //Subview Elements HAVE to be in DOM in order for correct placement
+        var stepViews = chainShowView.subviews()["#steps"]
+
+        for(var i = 0; i < stepViews.length; i++) {
+          stepViews[i].waitForParentView = false
+          stepViews[i].render();
+        }
+
       },
       error: function() {
         //add some kind of error redirect?

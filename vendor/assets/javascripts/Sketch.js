@@ -125,6 +125,33 @@ var Sketch = function(config) { "use strict";
 				currentPath.push(coords);
 				// Push coords to global path.
 				that.path.push(coords);
+
+        //Hack for making dots draw/animate
+        if(currentPath.length === 1){
+
+          var hackX = coords.x + .05;
+          var hackY = coords.y + .05;
+          var hack2X = coords.x //- .01;
+          var hack2Y = coords.y //- .01;
+
+          var hack = {
+            x: hackX,
+            y: hackY,
+            lapse: 3
+          }
+
+          var hack2 = {
+            x: hack2X,
+            y: hack2Y,
+            lapse: 3
+          }
+
+          currentPath.push(hack);
+          currentPath.push(hack2);
+          that.path.push(hack)
+          that.path.push(hack2)
+        }
+
 				// Reset the composite operation.
 				ctx.globalCompositeOperation = "source-over";
 				//
@@ -144,6 +171,7 @@ var Sketch = function(config) { "use strict";
 					ctx.globalCompositeOperation = "destination-out";
 				}
 				// Draw the entire path.
+
 				ctx.save();
 				ctx.scale(that.zoom, that.zoom);
         that.catmull({
@@ -202,6 +230,7 @@ var Sketch = function(config) { "use strict";
 		var path = this.path;
 		var startId = 0;
 		var dstOut;
+
 		///
 		var animate = function() {
 			// Stoping rendering animation.
@@ -216,6 +245,7 @@ var Sketch = function(config) { "use strict";
 				that.layerRestore();
 				return;
 			}
+
 			// Record to the background layer.
 			if (coord.beginPath) {
 				that.setStyle(ctx2, coord);
@@ -227,6 +257,7 @@ var Sketch = function(config) { "use strict";
 			for (var n = startId; n < nid; n ++) {
 				currentPath.push(path[n]);
 			}
+
 			//// Clear the path being actively drawn.
 			ctx2.globalCompositeOperation = "source-over";
 			ctx2.clearRect(0, 0, innerWidth, innerHeight);
@@ -240,6 +271,7 @@ var Sketch = function(config) { "use strict";
 				ctx2.globalCompositeOperation = "destination-out";
 			}
 			// Draw the entire path.
+      //console.log(currentPath)
 			ctx2.save();
 			ctx2.scale(that.zoom, that.zoom);
 			that.catmull({
