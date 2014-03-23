@@ -42,7 +42,7 @@ var Sketch = function(config) { "use strict";
 	var ctx1 = layer2d[1];
 	var ctx2 = layer2d[2];
 	// Style object.
-	this.zoom = 1;
+	this.zoom = config.zoom || 1;
 	this.style = {
 		tool: "brush",
 		globalAlpha: 1.0,
@@ -93,6 +93,7 @@ var Sketch = function(config) { "use strict";
 		// Redraw the content.
 		that.redrawFast();
 	};
+
 	// Record the vector commands from mouse movements.
 	this.record = function(event) {
 		if (that.rendering) return;

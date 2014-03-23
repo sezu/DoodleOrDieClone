@@ -2,7 +2,7 @@ DoodleOrDie.Collections.ChainSteps = Backbone.Collection.extend({
   model: DoodleOrDie.Models.Step,
 
   url: function(){
-    return this.chain.url() + "/steps"
+    return "/chains/" + this.chain.id + "/steps"
   },
 
   initialize: function(options) {

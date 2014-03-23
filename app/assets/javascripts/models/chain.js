@@ -1,5 +1,5 @@
 DoodleOrDie.Models.Chain = Backbone.Model.extend({
-  urlRoot: "chains/",
+  //urlRoot: "chains/",
 
   // initialize: function(options) {
   //   this.id = options.id

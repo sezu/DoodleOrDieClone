@@ -12,7 +12,7 @@
 #
 
 class Step < ActiveRecord::Base
-  validates :user_id, :chain_id, :presence => true
+  validates :user_id, :chain, :presence => true
 
   belongs_to :user
   belongs_to :chain

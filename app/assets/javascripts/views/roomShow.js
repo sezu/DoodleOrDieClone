@@ -29,7 +29,10 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
       var lastStep = chain.steps().models[chain.steps().length - 1]
 
       var stepShow = new DoodleOrDie.Views.StepShowView({
-        model: lastStep
+        model: lastStep,
+        zoom: 0.5,
+        width: 300,
+        height: 200
       })
 
       view.addSubview("#chains", stepShow);
@@ -120,12 +123,14 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
     if(chain_id) {
       //create new step
       //might be making this on wrong collection
+      //user room steps instead maybe
       _.extend(params, { chain_id: chain_id })
       this.model.chains().get(chain_id).steps().create(params)
 
     } else {
     //create new chain and new step if no chain_id
-
+      _.extend(params, { room_id: this.model.id })
+      this.model.chains().create(params)
     }
 
     this.removeSubview("#last-step", this.nextStepShow)
