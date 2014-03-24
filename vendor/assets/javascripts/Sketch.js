@@ -318,6 +318,7 @@ var Sketch = function(config) { "use strict";
 				ctx.beginPath();
 				ctx.moveTo(p2.x, p2.y);
 			}
+
 			ctx.bezierCurveTo(
 				p2.x + (tension * p3.x - tension * p1.x) / 6,
 				p2.y + (tension * p3.y - tension * p1.y) / 6,
@@ -326,7 +327,18 @@ var Sketch = function(config) { "use strict";
 				p3.x, p3.y
 			);
 		}
+
 		ctx.stroke();
+
+
+    ///Hack for fixing weird line splitting shit
+    for (var n = 0; n < length; n ++) {
+      ctx.beginPath()
+      var p = path[n]
+      ctx.arc(p.x, p.y, p.lineWidth/2.0, 0, 2*Math.PI)
+      ctx.fillStyle = p.strokeStyle;
+      ctx.fill();
+    }
 	};
 	// Reset and Restore the settings on the <canvas>.
 	this.layerReset = function() {

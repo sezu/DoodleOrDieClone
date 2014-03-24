@@ -1,4 +1,5 @@
 DoodleOrDie.Views.StepFormView = Backbone.View.extend({
+
   template: function() {
     //choose template based on if last step is image or text
     return (this.lastStep.is_image() ? JST['steps/textform'] : JST['steps/canvasform'])
@@ -57,7 +58,7 @@ DoodleOrDie.Views.StepFormView = Backbone.View.extend({
     this.sketch.style.lineWidth = this.brushSize;
 
     //update brush controls
-    $("#current-size").text("Brush Size: " + this.brushSize)
+    $("#current-size").text(this.brushSize)
     $("#size-slider").val(this.brushSize)
   },
 

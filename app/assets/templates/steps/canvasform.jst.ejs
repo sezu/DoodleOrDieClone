@@ -1,5 +1,7 @@
 <div class="drawArea" id="drawArea"></div>
 
+
+
 <div class="controls">Put toolbox here!!
   <button id="animate">Animate</button>
   <button id="undo">Undo</button>
@@ -7,10 +9,12 @@
   <br>
 
   <div id="size-controls">
-    <div id="current-size">Brush Size: 5</div>
-    <br>
-    <input type="range" value="5" min="1" max="100" id="size-slider">
-    <br>
+
+    <div class="size-display">
+      <input type="range" value="5" min="1" max="100" id="size-slider">
+      <div id="current-size">5</div>
+    </div>
+
     <button class="brush-size round-button" data-size="2">XXS</button>
     <button class="brush-size round-button" data-size="5">XS</button>
     <button class="brush-size round-button" data-size="10">S</button>
@@ -21,9 +25,26 @@
     <br>
   </div>
 
+  <div class="color-controls">
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+    <button class="color color-black"</button>
+  </div>
 
+  <button id="step-submit">Submit!</button>
 
-  <div id="color-picker"></div>
-
-  <button id="step-form">Submit!</button>
+  <div class="hide" id="color-picker"></div>
 </div>
