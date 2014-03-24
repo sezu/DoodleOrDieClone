@@ -21,8 +21,26 @@
 .drawArea {
   height: 400px;
   width: 600px;
-  min-width: 100%;
-  min-height: 100%;
+  /*min-width: 100%;
+  min-height: 100%;*/
+  position: relative;
+}
+
+.drawAreaPreview {
+  height: 200px;
+  width: 300px;
+  float: left;
+  /*min-width: 100%;
+  min-height: 100%;*/
+  position: relative;
+}
+
+.drawAreaTimeline {
+  height: 80px;
+  width: 120px;
+  /*min-width: 100%;
+  min-height: 100%;*/
+  display: inline-block;
   position: relative;
 }
 

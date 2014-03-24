@@ -3,9 +3,19 @@
     <!-- make link here instead maybe maybe? -->
   <div class="step-image" data-chain_id="<%=step.escape("chain_id")%>">
 
-    <div class="drawArea" id="drawArea<%= step.id + this.playing %>"></div>
-    <!-- should parse image instead of displaying URL -->
+    <% if(linkable) { %>
+      <a href="#/chains/<%=step.escape('chain_id')%>">
+        <% if(this.uniqueID === "timeline") { %>
+          <div class="drawAreaTimeline" id="drawArea<%= step.id + this.uniqueID %>"></div>
+          <% } else { %>
+            <div class="drawAreaPreview" id="drawArea<%= step.id + this.uniqueID %>"></div>
+          <% } %>
+      </a>
+    <% } else { %>
+      <div class="drawArea" id="drawArea<%= step.id + this.uniqueID %>"></div>
+    <% }; %>
   </div>
+
 <% } else { %>
   <div class="step-desc" data-chain_id="<%=step.escape("chain_id")%>">
     <%=step.escape("description")%>
@@ -16,3 +26,4 @@
 <!-- Try to fix later, currently doubley nested div -->
 
 <!-- href="#/chains/<%=step.escape("chain_id")%>" -->
+

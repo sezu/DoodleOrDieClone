@@ -2,12 +2,12 @@ DoodleOrDie.Views.StepShowView = Backbone.View.extend({
   template: JST['steps/show'],
 
   initialize: function(options) {
-     this.playing = options.playing || "",
+     this.uniqueID = options.uniqueID || "",
      this.waitForParentView = options.waitForParentView
      this.zoom = options.zoom || 1
      this.height = options.height || 400
      this.width = options.width || 600
-     this.isPreview = options.config || false
+     this.isLinkable = options.isLinkable || false
      //make sure this works!
   },
 
@@ -16,7 +16,10 @@ DoodleOrDie.Views.StepShowView = Backbone.View.extend({
   },
 
   render: function(){
-    var content = this.template({ step: this.model });
+    var content = this.template({
+      step: this.model,
+      linkable: this.isLinkable
+    });
     this.$el.html(content);
 
     if(this.model.is_image() && !this.waitForParentView) {
@@ -27,9 +30,10 @@ DoodleOrDie.Views.StepShowView = Backbone.View.extend({
   },
 
   createSketch: function() {
+    var eleId = "drawArea" + this.model.id + this.uniqueID
 
     this.sketch = new Sketch({
-      element: document.getElementById("drawArea" + this.model.id + this.playing),
+      element: document.getElementById(eleId),
       zoom: this.zoom,
       path: JSON.parse(this.model.get("image"))
     });
