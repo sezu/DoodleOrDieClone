@@ -12,43 +12,91 @@
  *= require_tree .
  */
 
+//@import "bootstrap";
+
+body {
+  background-color: #B8B8FF;
+  font-family: 'The Girl Next Door', cursive;
+}
+
 .hidden {
 	display: none;
 }
 
+
 /* DRAWING AREA */
 
 .drawArea {
+  background-color: white;
   height: 400px;
   width: 600px;
   /*min-width: 100%;
   min-height: 100%;*/
   position: relative;
+  border: 2px solid black;
 }
 
 .drawAreaPreview {
+  background-color: white;
   height: 200px;
   width: 300px;
-  float: left;
+
   /*min-width: 100%;
   min-height: 100%;*/
   position: relative;
+  border: 2px solid black;
+}
+
+#timeline {
+  height: 110px;
+  overflow-x: scroll;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.step-image {
+  display: inline-block;
 }
 
 .drawAreaTimeline {
+  background-color: white;
   height: 80px;
   width: 120px;
+
   /*min-width: 100%;
   min-height: 100%;*/
-  display: inline-block;
   position: relative;
+
+  border: 2px solid black;
 }
 
 canvas {
   position: absolute;
   left: 300;
   top: 0;
-  border: 2px solid black;
+}
+
+/*TOOLBOX*/
+.round-button {
+    display:inline-block;
+    width:40px;
+    height:40px;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+    color:#f5f5f5;
+    text-align:center;
+    text-decoration:none;
+    background: #464646;
+    box-shadow: 0 0 3px gray;
+    font-size:14px;
+    font-weight:bold;
+}
+.round-button:hover {
+    background: #262626;
+}
+
+.button-selected {
+
 }
 
 

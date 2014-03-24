@@ -1,6 +1,10 @@
 DoodleOrDie.Views.StepShowView = Backbone.View.extend({
   template: JST['steps/show'],
 
+  className: function() {
+    return this.model.is_image() ? "step-image" : "step-desc"
+  },
+
   initialize: function(options) {
      this.uniqueID = options.uniqueID || "",
      this.waitForParentView = options.waitForParentView

@@ -55,8 +55,6 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
     var counter = steps.length - 1;
     //maybe use counter to keep track of where in timeline you are.
 
-    debugger;
-
     while(this.timeline.length < 8 || counter < 0) {
       if(steps[counter].is_image()) {
         var stepShow = new DoodleOrDie.Views.StepShowView({

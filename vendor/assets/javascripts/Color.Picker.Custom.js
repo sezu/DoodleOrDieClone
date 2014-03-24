@@ -230,16 +230,17 @@ Color.Picker = function (conf) {
 				event: event,
 				target: plugin,
 				listener: function (event, self) {
-					var x1 = 0;
-					var y1 = 0;
-					var x2 = window.innerWidth;
-					var y2 = window.innerHeight
-					var width = self.target.offsetWidth;
-					var height = self.target.offsetHeight;
-					if (self.x + width > x2) self.x = x2 - width;
-					if (self.y + height > y2) self.y = y2 - height;
-					if (self.x < x1) self.x = x1;
-					if (self.y < y1) self.y = y1;
+
+					 var x1 = 0;
+           var y1 = 0;
+//           var x2 = window.innerWidth;
+//           var y2 = window.innerHeight
+//           var width = self.target.offsetWidth;
+//           var height = self.target.offsetHeight;
+//           if (self.x + width > x2) self.x = x2 - width;
+//           if (self.y + height > y2) self.y = y2 - height;
+           if (self.x < x1) self.x = x1;
+           if (self.y < y1) self.y = y1;
 					///
 					plugin.style.left = self.x + "px";
 					plugin.style.top = self.y + "px";

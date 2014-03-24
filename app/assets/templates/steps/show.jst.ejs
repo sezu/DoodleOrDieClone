@@ -1,8 +1,6 @@
 <!--<a href="#/chains/<%=step.escape("chain_id")%>" data-id="<%=step.id%>" class="step">-->
 <% if(step.is_image()) { %>
     <!-- make link here instead maybe maybe? -->
-  <div class="step-image" data-chain_id="<%=step.escape("chain_id")%>">
-
     <% if(linkable) { %>
       <a href="#/chains/<%=step.escape('chain_id')%>">
         <% if(this.uniqueID === "timeline") { %>
@@ -17,7 +15,6 @@
   </div>
 
 <% } else { %>
-  <div class="step-desc" data-chain_id="<%=step.escape("chain_id")%>">
     <%=step.escape("description")%>
   </div>
 <% }; %>
