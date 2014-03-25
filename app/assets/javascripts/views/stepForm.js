@@ -23,7 +23,7 @@ DoodleOrDie.Views.StepFormView = Backbone.View.extend({
 
   render: function(){
     var content = this.template({ room: this.model })
-    this.$el.html(content)
+    this.$el.html(content);
 
     if(!this.lastStep.is_image()) {
       this.createSketch();

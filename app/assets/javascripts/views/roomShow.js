@@ -28,23 +28,27 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
     var view = this;
 
     this.model.chains().each(function(chain){
-      var lastStep = chain.steps().models[chain.steps().length - 1]
+      // var lastStep = chain.steps().models[chain.steps().length - 1]
+      //
+      // if(!lastStep.is_image())
+      // {
+      //   lastStep = chain.steps().models[chain.steps().length - 2]
+      // }
+      //
+      // var stepShow = new DoodleOrDie.Views.StepShowView({
+      //   model: lastStep,
+      //   zoom: 0.5,
+      //   width: 300,
+      //   height: 200,
+      //   isLinkable: true
+      // })
 
-      if(!lastStep.is_image())
-      {
-        lastStep = chain.steps().models[chain.steps().length - 2]
-      }
-
-      var stepShow = new DoodleOrDie.Views.StepShowView({
-        model: lastStep,
-        zoom: 0.5,
-        width: 300,
-        height: 200,
-        isLinkable: true
+      var chainPreview = new DoodleOrDie.Views.ChainPreviewView({
+        model: chain
       })
 
-      view.addSubview("#chains", stepShow);
-      stepShow.render();
+      view.addSubview("#chains", chainPreview);
+      chainPreview.render();
     });
   },
 

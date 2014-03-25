@@ -6,7 +6,7 @@ DoodleOrDie.Views.StepShowView = Backbone.View.extend({
   },
 
   initialize: function(options) {
-     this.uniqueID = options.uniqueID || "",
+     this.uniqueID = options.uniqueID || ""
      this.waitForParentView = options.waitForParentView
      this.zoom = options.zoom || 1
      this.height = options.height || 400
@@ -27,6 +27,7 @@ DoodleOrDie.Views.StepShowView = Backbone.View.extend({
     this.$el.html(content);
 
     if(this.model.is_image() && !this.waitForParentView) {
+      //debugger;
       this.createSketch();
     }
 
@@ -35,6 +36,7 @@ DoodleOrDie.Views.StepShowView = Backbone.View.extend({
 
   createSketch: function() {
     var eleId = "drawArea" + this.model.id + this.uniqueID
+    debugger;
 
     this.sketch = new Sketch({
       element: document.getElementById(eleId),

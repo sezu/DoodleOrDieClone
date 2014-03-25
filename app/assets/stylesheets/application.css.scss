@@ -47,11 +47,12 @@ body {
   /*min-width: 100%;
   min-height: 100%;*/
   position: relative;
-  border: 2px solid black;
 }
 
 .drawAreaTimeline {
   background-color: white;
+  margin-left: 4px;
+  margin-right: 4px;
   height: 80px;
   width: 120px;
 
@@ -59,7 +60,6 @@ body {
   min-height: 100%;*/
   position: relative;
 
-  border: 2px solid black;
 }
 
 canvas {
@@ -332,7 +332,6 @@ canvas {
 }
 
 .step-desc-playing {
-  margin-left: 10px;
   float: left;
   font-size: 20px;
   width: 330px;
@@ -360,6 +359,7 @@ canvas {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
   box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  margin-bottom: 10px;
 }
 
 .step-desc-playing::before {

@@ -22,6 +22,6 @@ DoodleOrDie.Views.ChainShowView = Backbone.CompositeView.extend({
     })
 
     this.addSubview("#steps", stepShow)
-    stepShow.render();
+    // stepShow.render();
   }
 })
