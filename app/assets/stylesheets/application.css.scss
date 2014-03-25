@@ -27,6 +27,7 @@ body {
 /* DRAWING AREA */
 
 .drawArea {
+  margin-top: 15px;
   float: left;
   background-color: white;
   height: 400px;
@@ -34,7 +35,7 @@ body {
   /*min-width: 100%;
   min-height: 100%;*/
   position: relative;
-  border: 2px solid black;
+
 }
 
 .drawAreaPreview {
@@ -47,17 +48,6 @@ body {
   min-height: 100%;*/
   position: relative;
   border: 2px solid black;
-}
-
-#timeline {
-  height: 110px;
-  overflow-x: scroll;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.step-image {
-  display: inline-block;
 }
 
 .drawAreaTimeline {
@@ -78,6 +68,17 @@ canvas {
   top: 0;
 }
 
+#timeline {
+  height: 110px;
+  overflow-x: scroll;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.step-image {
+  display: inline-block;
+}
+
 
 
 /*TOOLBOX*/
@@ -88,6 +89,7 @@ canvas {
   width: 330px;
   height: 300px;
   margin-left: 10px;
+  margin-top: 10px;
 }
 
 .size-controls {
@@ -140,19 +142,26 @@ canvas {
 }
 
 .color-controls {
+  margin-top: 10px;
   width: 100%;
   height: 100px;
-  border: 2px solid black;
+  padding: 2px;
   margin-top: 5px;
-  margin-bottom: 5px;
 }
 
 .color {
-  float: left;;
+  float: left;
   width: 36px;
   height: 36px;
   border: 2px solid #FFFFFF;
   margin: 2px;
+}
+
+.selected-color {
+  font-size: 20px;
+  text-shadow: -1px 0 black, 0 1px white, 1px 0 black, 0 -1px black;
+  color: white;
+  border: 2px solid #000000;
 }
 
 .color:hover {
@@ -160,15 +169,253 @@ canvas {
 }
 
 .color-black {
-  background: #464646;
+  background-color: #000000;
+}
+
+.color-gray {
+  background-color: #6d6f71;
+}
+
+.color-blue {
+  background-color: #0791cd;
+}
+
+.color-green {
+  background-color: #699c41;
+}
+
+.color-orange {
+  background-color: #f47e20;
+}
+
+.color-red {
+  background-color: #d6163b;
+}
+
+.color-brown {
+  background-color: #6e1a11;
+}
+
+.color-tan {
+  background-color: #f8ded7;
+}
+
+.color-white {
+  background-color: #FFFFFF;
+}
+
+.color-light-gray {
+  background-color: #d1d3d4;
+}
+
+.color-light-blue {
+  background-color: #73cff2;
+}
+
+.color-light-green {
+  background-color: #9bcc66;
+}
+
+.color-yellow {
+  background-color: #ffec00;
+}
+
+.color-pink {
+  background-color: #f180aa;
+}
+
+.color-purple {
+  background-color: #812468;
+}
+
+.color-more-tan {
+  background-color: #8e684c;
 }
 
 .stepform {
   width: 100%;
 }
 
-.step-submit {
-  width: 100%;
+//#step-submit {
+//  width: 100%;
+//}
+
+#step-submit {
+	position: relative;
+    color: black;
+    background-color: #84F5D4;
+    font-size: 18px;
+    display: block;
+    padding: 4px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 9px 0px white, 0px 3px 6px white;
+    -moz-box-shadow: 0px 9px 0px white, 0px 3px 6px white;
+    box-shadow: 0px 9px 0px white, 0px 3px 6px white;
+	width: 100%;
+	text-align: center;
+
+	-webkit-transition: all .1s ease;
+	-moz-transition: all .1s ease;
+	-ms-transition: all .1s ease;
+	-o-transition: all .1s ease;
+	transition: all .1s ease;
+}
+
+#step-submit:active {
+    -webkit-box-shadow: 0px 3px 0px white, 0px 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow: 0px 3px 0px white, 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px white, 0px 3px 6px rgba(0,0,0,.9);
+    position: relative;
+    top: 6px;
+}
+
+//#step-submit {
+//  width: 100%;
+//}
+
+.step-desc {
+  word-wrap: break-word;
+  font-size: 20px;
+  width: 600px;
+  height: 110px;
+  padding: 26px 5px 4px 42px;
+  position: relative;
+  color: #444;
+  line-height: 20px;
+  border: 1px solid #d2d2d2;
+  background: #fff;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+  background: -webkit-linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  background: -moz-linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  background: -ms-linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  background: -o-linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  background: linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  -webkit-background-size: 100% 20px;
+  -moz-background-size: 100% 20px;
+  -ms-background-size: 100% 20px;
+  -o-background-size: 100% 20px;
+  background-size: 100% 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.step-desc::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  top: 0;
+  left: 30px;
+  bottom: 0;
+  border: 1px solid;
+  border-color: transparent #FF7373;
+}
+
+.step-desc-text {
+  word-wrap: break-word;
+  display: block;
+  width: 94%;
+  margin: 0 auto;
+  padding: 3.8% 3%;
+  border: none;
+  outline: none;
+  height: 94%;
+  background: transparent;
+  line-height: 20px;
+}
+
+.step-desc-playing {
+  margin-left: 10px;
+  float: left;
+  font-size: 20px;
+  width: 330px;
+  height: 110px;
+  padding: 26px 5px 4px 42px;
+  position: relative;
+  color: #444;
+  line-height: 20px;
+  border: 1px solid #d2d2d2;
+  background: #fff;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+  background: -webkit-linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  background: -moz-linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  background: -ms-linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  background: -o-linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  background: linear-gradient(top, #b7e4f4 0%, #fff 8%) 0 4px;
+  -webkit-background-size: 100% 20px;
+  -moz-background-size: 100% 20px;
+  -ms-background-size: 100% 20px;
+  -o-background-size: 100% 20px;
+  background-size: 100% 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+}
+
+.step-desc-playing::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  top: 0;
+  left: 30px;
+  bottom: 0;
+  border: 1px solid;
+  border-color: transparent #FF7373;
+}
+
+.step-desc-playing-text {
+  word-wrap: break-word;
+  display: block;
+  width: 94%;
+  margin: 0 auto;
+  padding: 3.8% 3%;
+  border: none;
+  outline: none;
+  height: 94%;
+  background: transparent;
+  line-height: 20px;
+}
+
+
+#last-step {
+  float:left;
+}
+
+#mission {
+  font-family: 'Peralta', cursive;
+  font-size: 50px;
+  font-color: #4FF8C8;
+  text-align: center;
+  float:left;
+  height: 110px;
+  width: 330px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-left: 10px;
+  background-color: #84F5D4;
+  border: 5px solid white;
+  position: relative;
+  padding-top :15px;
+}
+
+#skip {
+  position: absolute;
+  text-align: right;
+  font-size: 20px;
+  bottom: 0;
+  right: 0;
+  height: 24px;
+  width: 62px;
 }
 
 

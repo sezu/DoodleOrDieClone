@@ -1,18 +1,16 @@
 <div class="drawArea" id="drawArea"></div>
 
-
-
-<div class="controls">Put toolbox here!!
+<div class="controls">
+  <button id="more-colors">Colors!</button>
   <button id="animate">Animate</button>
   <button id="undo">Undo</button>
   <button id="clear">Clear</button>
-  <br>
 
   <div id="size-controls">
 
     <div class="size-display">
-      <input type="range" value="5" min="1" max="100" id="size-slider">
-      <div id="current-size">5</div>
+      <input type="range" value="10" min="1" max="100" id="size-slider">
+      <div id="current-size">10</div>
     </div>
 
     <button class="brush-size round-button" data-size="2">XXS</button>
@@ -26,22 +24,23 @@
   </div>
 
   <div class="color-controls">
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
-    <button class="color color-black"</button>
+    <button class="color color-black" data-hex="#000000"</button>
+    <button class="color color-gray" data-hex="#6d6f71"</button>
+    <button class="color color-blue" data-hex="#0791cd"</button>
+    <button class="color color-green" data-hex="#699c41"</button>
+    <button class="color color-orange" data-hex="#f47e20"</button>
+    <button class="color color-red" data-hex="#d6163b"</button>
+    <button class="color color-brown" data-hex="#6e1a11"</button>
+    <button class="color color-tan" data-hex="#f8ded7"</button>
+
+    <button class="color color-white" data-hex="#FFFFFF"</button>
+    <button class="color color-light-gray" data-hex="#d1d3d4"</button>
+    <button class="color color-light-blue" data-hex="#73cff2"</button>
+    <button class="color color-light-green" data-hex="#9bcc66"</button>
+    <button class="color color-yellow" data-hex="#ffec00"</button>
+    <button class="color color-pink" data-hex="#f180aa"</button>
+    <button class="color color-purple" data-hex="#812468"</button>
+    <button class="color color-more-tan" data-hex="#8e684c"</button>
   </div>
 
   <button id="step-submit">Submit!</button>

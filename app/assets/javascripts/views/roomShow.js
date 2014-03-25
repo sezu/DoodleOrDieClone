@@ -100,6 +100,7 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
     //clear next_step div
     this.removeSubview("#last-step", this.nextStepShow)
     this.fetchStepToPlay();
+
     //somehow update skip counter on chain_id
   },
 
@@ -120,6 +121,10 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
   },
 
   addNextStep: function() {
+    var missionText = this.next_step.is_image() ? "DESCRIBE" :"DRAW"
+    $("#mission").text(missionText)
+    $("#mission").append('<a href="#" id="skip">Skip</a>')
+
     this.nextStepShow = new DoodleOrDie.Views.StepShowView({
       model: this.next_step,
       //needed to add a unique id tag to nextstep view
