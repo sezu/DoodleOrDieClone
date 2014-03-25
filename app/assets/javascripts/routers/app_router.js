@@ -20,10 +20,11 @@ DoodleOrDie.Routers.AppRouter = Backbone.Router.extend({
   },
 
   roomPlay: function(id) {
-    var usersteps_collection_for_room;
+    var room = DoodleOrDie.rooms.getOrFetch(id)
+    room.userTimeline().fetch();
 
     var roomPlayView = new DoodleOrDie.Views.RoomPlayView({
-      collection: usersteps_collection_for_room
+      model: room
     })
 
     this._swapView(roomPlayView)

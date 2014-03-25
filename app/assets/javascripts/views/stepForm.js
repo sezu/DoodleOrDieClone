@@ -9,6 +9,8 @@ DoodleOrDie.Views.StepFormView = Backbone.View.extend({
     this.lastStep = options.lastStep
     this.brushSize = 10;
     this.colorPickerDisplay = false;
+
+    this.listenTo(this, 'inDOM', this.createSketch);
   },
 
   events: {
@@ -22,17 +24,17 @@ DoodleOrDie.Views.StepFormView = Backbone.View.extend({
   },
 
   render: function(){
-    var content = this.template({ room: this.model })
+    var content = this.template({})
     this.$el.html(content);
-
-    if(!this.lastStep.is_image()) {
-      this.createSketch();
-    }
 
     return this;
   },
 
   createSketch: function() {
+    if (this.lastStep.is_image()) {
+      return;
+    }
+
     this.sketch = new Sketch({
       element: document.getElementById("drawArea")
     });

@@ -22,6 +22,13 @@ class User < ActiveRecord::Base
   has_many :sessions
   has_many :steps
 
+  def steps_for_room(room)
+    room_id = room.is_a?(Room) ? room.id : room
+
+    self.steps.joins(:chain).where('chains.room_id = ?', room)
+  end
+
+
   def password2=(confirmation_password)
     @password2 = confirmation_password
   end

@@ -1,0 +1,13 @@
+<a href="#/rooms/<%=room.id%>">Explore!</a>
+
+<div id="timeline"></div>
+
+<div id="last-step"></div>
+
+<div id="mission"><%=missionText%>
+  <% if(missionText !== "Loading...") { %>
+    <a href="#" id="skip">Skip</a>
+  <% }%>
+</div>
+
+<form id="step-form"></form>

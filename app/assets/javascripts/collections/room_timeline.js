@@ -1,8 +1,8 @@
-DoodleOrDie.Collections.UsersRoomSteps = Backbone.Collection.extend({
+DoodleOrDie.Collections.RoomTimeline = Backbone.Collection.extend({
   model: DoodleOrDie.Models.Step,
 
   url: function(){
-    return this.room.url() + "/steps"
+    return this.room.url() + "/timeline"
   },
 
   initialize: function(options) {

@@ -16,6 +16,4 @@ class Step < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :chain
-
-  #has_attached_file :img
 end

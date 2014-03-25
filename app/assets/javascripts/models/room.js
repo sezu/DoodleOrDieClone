@@ -6,11 +6,11 @@ DoodleOrDie.Models.Room = Backbone.Model.extend({
     return this.chains_collection
   },
 
-  currUserSteps: function() {
-    this.userStep_collection = this.userStep_collection ||
-        new DoodleOrDie.Collections.UsersRoomSteps({ room: this });
+  userTimeline: function() {
+    this.timeline_collection = this.timeline_collection ||
+        new DoodleOrDie.Collections.RoomTimeline({ room: this });
 
-    return this.userStep_collection
+    return this.timeline_collection
   },
 
   parse: function(resp) {
@@ -24,10 +24,10 @@ DoodleOrDie.Models.Room = Backbone.Model.extend({
       delete resp.chains;
     }
 
-    if(resp.user_steps){
-      this.currUserSteps().set(resp.user_steps)
-      delete resp.user_steps;
-    }
+    // if(resp.user_steps){
+    //   this.currUserSteps().set(resp.user_steps)
+    //   delete resp.user_steps;
+    // }
 
     return resp
   }

@@ -19,6 +19,7 @@ DoodleOrDieClone::Application.routes.draw do
 
   resources :rooms, :only => [:index, :show, :create, :update], defaults: {:format => :json} do
     get "fetch_step", to: "steps#fetch_next_step"
+    resource :timeline, :only => [:show]
   end
 
   resources :chains, :only => [:show, :update, :create] do
