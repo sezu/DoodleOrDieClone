@@ -6,13 +6,16 @@ DoodleOrDie.Views.StepShowView = Backbone.View.extend({
   },
 
   initialize: function(options) {
-     this.uniqueID = options.uniqueID || ""
-     this.waitForParentView = options.waitForParentView
-     this.zoom = options.zoom || 1
-     this.height = options.height || 400
-     this.width = options.width || 600
-     this.isLinkable = options.isLinkable || false
-     //make sure this works!
+    Backbone.CompositeView.prototype.initialize.apply(this);
+    this.listenTo(this, 'inDOM', this.createSketch);
+
+    this.uniqueID = options.uniqueID || ""
+    this.waitForParentView = options.waitForParentView
+    this.zoom = options.zoom || 1
+    this.height = options.height || 400
+    this.width = options.width || 600
+    this.isLinkable = options.isLinkable || false
+    //make sure this works!
   },
 
   events: {
@@ -26,17 +29,15 @@ DoodleOrDie.Views.StepShowView = Backbone.View.extend({
     });
     this.$el.html(content);
 
-    if(this.model.is_image() && !this.waitForParentView) {
-      //debugger;
-      this.createSketch();
-    }
-
     return this;
   },
 
   createSketch: function() {
+    if (!this.model.is_image()) {
+      return;
+    }
+
     var eleId = "drawArea" + this.model.id + this.uniqueID
-    debugger;
 
     this.sketch = new Sketch({
       element: document.getElementById(eleId),

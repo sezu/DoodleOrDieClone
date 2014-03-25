@@ -2,8 +2,9 @@ DoodleOrDie.Views.ChainShowView = Backbone.CompositeView.extend({
   template: JST['chains/show'],
 
   initialize: function(options) {
-    this.listenTo(this.model.steps(), "add", this.addStep);
+    Backbone.CompositeView.prototype.initialize.apply(this);
 
+    this.listenTo(this.model.steps(), "add", this.addStep);
     this.model.steps().each(this.addStep.bind(this));
   },
 
@@ -22,6 +23,6 @@ DoodleOrDie.Views.ChainShowView = Backbone.CompositeView.extend({
     })
 
     this.addSubview("#steps", stepShow)
-    // stepShow.render();
+    stepShow.render();
   }
 })

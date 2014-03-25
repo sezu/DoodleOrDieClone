@@ -5,6 +5,7 @@ DoodleOrDie.Routers.AppRouter = Backbone.Router.extend({
 
   routes: {
     "":  "frontPage",
+    "rooms/:id/play": "roomPlay",
     "rooms/:id":  "roomShow",
     "rooms":  "roomsIndex",
     "chains/:id": "chainShow",
@@ -16,6 +17,16 @@ DoodleOrDie.Routers.AppRouter = Backbone.Router.extend({
     var frontPageView = new DoodleOrDie.Views.FrontPageView({})
 
     this._swapView(frontPageView)
+  },
+
+  roomPlay: function(id) {
+    var usersteps_collection_for_room;
+
+    var roomPlayView = new DoodleOrDie.Views.RoomPlayView({
+      collection: usersteps_collection_for_room
+    })
+
+    this._swapView(roomPlayView)
   },
 
   roomsIndex: function() {
@@ -47,16 +58,7 @@ DoodleOrDie.Routers.AppRouter = Backbone.Router.extend({
           model: chain
         })
 
-        that._swapView(chainShowView)
-
-        //Hack to get canvas elements placed correctly
-        //Subview Elements HAVE to be in DOM in order for correct placement
-        var stepViews = chainShowView.subviews()["#steps"]
-
-        for(var i = 0; i < stepViews.length; i++) {
-          stepViews[i].waitForParentView = false
-          stepViews[i].render();
-        }
+      that._swapView(chainShowView)
 
       },
       error: function() {
@@ -66,8 +68,11 @@ DoodleOrDie.Routers.AppRouter = Backbone.Router.extend({
   },
 
   _swapView: function(newView) {
-    this._currentView && this._currentView.remove();
+    if (this._currentView) {
+      this._currentView.remove();
+    }
     this._currentView = newView;
     this.$rootEl.html(newView.render().$el);
+    this._currentView.trigger('inDOM');
   }
 });

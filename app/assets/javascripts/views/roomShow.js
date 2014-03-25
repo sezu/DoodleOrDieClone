@@ -2,8 +2,8 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
   template: JST['rooms/show'],
 
   initialize: function(options) {
+    Backbone.CompositeView.prototype.initialize.apply(this);
     this.listenTo(this.model, "sync", this.addChainPreviews);
-    //possibly move?
     this.listenTo(this.model, "sync", this.addStepTimeline);
   },
 
@@ -23,33 +23,18 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
   },
 
   addChainPreviews: function() {
-    //THIS NEEDS FIXING ONCE IMAGES GET ADDED!
-    //currently only displaying last step in each chain!
     var view = this;
+    debugger;
 
     this.model.chains().each(function(chain){
-      // var lastStep = chain.steps().models[chain.steps().length - 1]
-      //
-      // if(!lastStep.is_image())
-      // {
-      //   lastStep = chain.steps().models[chain.steps().length - 2]
-      // }
-      //
-      // var stepShow = new DoodleOrDie.Views.StepShowView({
-      //   model: lastStep,
-      //   zoom: 0.5,
-      //   width: 300,
-      //   height: 200,
-      //   isLinkable: true
-      // })
-
       var chainPreview = new DoodleOrDie.Views.ChainPreviewView({
         model: chain
       })
 
       view.addSubview("#chains", chainPreview);
-      chainPreview.render();
     });
+
+    //this.render()
   },
 
   addStepTimeline: function() {
@@ -59,8 +44,11 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
     var counter = steps.length - 1;
     //maybe use counter to keep track of where in timeline you are.
 
-    while(this.timeline.length < 8 || counter < 0) {
+    //debugger;
+
+    while(this.timeline.length < 8 && counter > 0) {
       if(steps[counter].is_image()) {
+
         var stepShow = new DoodleOrDie.Views.StepShowView({
           model: steps[counter],
           zoom: 0.2,
@@ -72,11 +60,12 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
 
         this.timeline.push(stepShow)
         this.addSubview("#timeline", stepShow);
-        stepShow.render();
       }
 
       counter--;
     }
+
+    this.render();
   },
 
   explore: function() {
@@ -96,14 +85,13 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
     if(!this.next_step){
       this.fetchStepToPlay();
     }
-    //show player's timeline eventually
   },
 
   skip: function(){
     event.preventDefault();
     //clear next_step div
-    this.removeSubview("#last-step", this.nextStepShow)
     this.fetchStepToPlay();
+    this.removeSubview("#last-step", this.nextStepShow)
 
     //somehow update skip counter on chain_id
   },

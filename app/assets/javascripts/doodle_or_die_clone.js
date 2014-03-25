@@ -25,6 +25,19 @@ $(document).ready(function(){
 
 //Composite Views
 Backbone.CompositeView = Backbone.View.extend({
+  initialize: function() {
+    this.listenTo(this, 'inDOM', this.cascadeInDOM);
+  },
+
+  cascadeInDOM: function () {
+    this.inDOM = true;
+    _(this.subviews()).each(function(selectorSubviews, selector) {
+      _(selectorSubviews).each(function (subview) {
+        subview.trigger('inDOM');
+      })
+    })
+  },
+
   addSubview: function (selector, subview) {
     var selectorSubviews =
       this.subviews()[selector] || (this.subviews()[selector] = []);
@@ -37,7 +50,8 @@ Backbone.CompositeView = Backbone.View.extend({
 
   remove: function () {
     Backbone.View.prototype.remove.call(this);
-
+    this.trigger('outDOM');
+    this.inDOM = false;
     // remove all subviews as well
     _(this.subviews()).each(function (selectorSubviews, selector) {
       _(selectorSubviews).each(function (subview){
@@ -65,6 +79,10 @@ Backbone.CompositeView = Backbone.View.extend({
       _(selectorSubviews).each(function (subview) {
         $selectorEl.append(subview.render().$el);
         subview.delegateEvents();
+
+        if (view.inDOM) {
+          subview.trigger('inDOM');
+        }
       });
     });
   },

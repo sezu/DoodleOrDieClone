@@ -1,12 +1,16 @@
 DoodleOrDie.Views.ChainPreviewView = Backbone.CompositeView.extend({
+  initialize: function () {
+    Backbone.CompositeView.prototype.initialize.apply(this);
+  },
+
   template: JST['chains/preview'],
 
   render: function() {
-    var content = this.template({ chain: this.model })
-    this.$el.html(content)
+    var content = this.template({ chain: this.model });
+    this.$el.html(content);
 
-    var steps = this.model.steps().models
-    var lastStep = steps[steps.length - 1]
+    var steps = this.model.steps().models;
+    var lastStep = steps[steps.length - 1];
 
     if(!lastStep.is_image()) {
       lastDesc = steps[steps.length - 3]
@@ -18,19 +22,16 @@ DoodleOrDie.Views.ChainPreviewView = Backbone.CompositeView.extend({
 
     var descShow = new DoodleOrDie.Views.StepShowView({
       model: lastDesc,
-      uniqueID: preview
+      uniqueID: 'preview'
     })
-
-    debugger;
 
     var imageShow = new DoodleOrDie.Views.StepShowView({
       model: lastImage,
-      uniqueID: preview,
+      uniqueID: 'preview',
       zoom: 0.5,
       width: 300,
       height: 200,
-      isLinkable: true//,
-      //waitForParentView: true
+      isLinkable: true
     })
 
     this.addSubview("#desc-" + this.model.id, descShow);
