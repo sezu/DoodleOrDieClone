@@ -115,14 +115,27 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
     if(this.next_step.is_image()){
       var params = $(event.currentTarget).serializeJSON()["step"];
+
+      if(!/\S/.test(params["description"])) {
+        //add some kind of input error to screen
+        console.log("Form cannot be blank!")
+        return;
+      }
+
     } else {
+
       var params = { image: this.stepForm.sketch.toString() }
+
+      if(params["image"] === "[]") {
+        console.log("Form cannot be blank!")
+        return;
+      }
     }
 
     if(chain_id) {
       //create new step
       //might be making this on wrong collection
-      //user room steps instead maybe
+      //user room timeline instead maybe
       _.extend(params, { chain_id: chain_id })
       this.model.chains().get(chain_id).steps().create(params)
 

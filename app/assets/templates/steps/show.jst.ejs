@@ -1,26 +1,28 @@
-<!--<a href="#/chains/<%=step.escape("chain_id")%>" data-id="<%=step.id%>" class="step">-->
 <% if(step.is_image()) { %>
-    <!-- make link here instead maybe maybe? -->
+
     <% if(linkable) { %>
       <a href="#/chains/<%=step.escape('chain_id')%>">
         <% if(this.uniqueID === "timeline") { %>
           <div class="drawAreaTimeline" id="drawArea<%= step.id + this.uniqueID %>"></div>
           <% } else { %>
-            <div class="drawAreaPreview" id="drawArea<%= step.id + this.uniqueID %>"></div>
+          <div class="drawAreaPreview" id="drawArea<%= step.id + this.uniqueID %>"></div>
           <% } %>
       </a>
     <% } else { %>
       <div class="drawArea" id="drawArea<%= step.id + this.uniqueID %>"></div>
     <% }; %>
-  </div>
 
 <% } else { %>
     <%=step.escape("description")%>
-  </div>
 <% }; %>
-<!-- </a> -->
 
-<!-- Try to fix later, currently doubley nested div -->
 
-<!-- href="#/chains/<%=step.escape("chain_id")%>" -->
+<% if(showInfo) { %>
+  <div class="step-info">
+    User: <%=step.get("username")%>
 
+    <% if(step.is_image()) { %>
+      <button class="animate">Animate</button>
+    <% } %>
+  <div>
+<% } %>

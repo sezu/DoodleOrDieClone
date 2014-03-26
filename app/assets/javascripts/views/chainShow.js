@@ -1,4 +1,6 @@
 DoodleOrDie.Views.ChainShowView = Backbone.CompositeView.extend({
+  className: "preview",
+
   template: JST['chains/show'],
 
   initialize: function(options) {
@@ -19,7 +21,7 @@ DoodleOrDie.Views.ChainShowView = Backbone.CompositeView.extend({
   addStep: function(step){
     var stepShow = new DoodleOrDie.Views.StepShowView({
       model: step,
-      waitForParentView: true
+      showInfo: true
     })
 
     this.addSubview("#steps", stepShow)

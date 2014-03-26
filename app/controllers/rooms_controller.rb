@@ -11,9 +11,19 @@ class RoomsController < ApplicationController
     @chains = @room.chains
     @steps = {}
 
+    p "START!"
+    timer = Time.now
+    #using cache instead of doing this!!!!!
+    # @chains.each do |chain|
+    #   @steps[chain.id] = chain.steps
+    # end
+
     @chains.each do |chain|
-      @steps[chain.id] = chain.steps
+      @steps[chain.id] = chain.steps[-3..-1]
     end
+
+    p "END"
+    p Time.now - timer
   end
 
   def create
