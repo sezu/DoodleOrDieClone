@@ -1,9 +1,7 @@
 DoodleOrDie.Views.StepShowView = Backbone.View.extend({
   template: JST['steps/show'],
 
-  className: function() {
-    return this.model.is_image() ? "step-image" : "step-desc"
-  },
+  className: "step",
 
   initialize: function(options) {
     Backbone.CompositeView.prototype.initialize.apply(this);

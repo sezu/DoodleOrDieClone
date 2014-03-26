@@ -27,6 +27,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     this.timeline = [];
     this.timelineIndex = this.model.userTimeline().length - 1;
 
+
     var steps = this.model.userTimeline().models;
     var counter = this.timelineIndex;
 

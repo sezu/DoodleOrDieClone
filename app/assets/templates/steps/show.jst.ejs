@@ -1,4 +1,5 @@
 <% if(step.is_image()) { %>
+  <div class="step-image">
 
     <% if(linkable) { %>
       <a href="#/chains/<%=step.escape('chain_id')%>">
@@ -12,8 +13,12 @@
       <div class="drawArea" id="drawArea<%= step.id + this.uniqueID %>"></div>
     <% }; %>
 
+  </div>
+
 <% } else { %>
-    <%=step.escape("description")%>
+    <div class="step-desc">
+      <%=step.escape("description")%>
+    </div>
 <% }; %>
 
 
@@ -24,5 +29,5 @@
     <% if(step.is_image()) { %>
       <button class="animate">Animate</button>
     <% } %>
-  <div>
+  </div>
 <% } %>

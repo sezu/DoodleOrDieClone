@@ -1,6 +1,4 @@
 DoodleOrDie.Views.ChainShowView = Backbone.CompositeView.extend({
-  className: "preview",
-
   template: JST['chains/show'],
 
   initialize: function(options) {

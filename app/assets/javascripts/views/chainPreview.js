@@ -1,4 +1,6 @@
 DoodleOrDie.Views.ChainPreviewView = Backbone.CompositeView.extend({
+  className: "preview",
+
   initialize: function () {
     Backbone.CompositeView.prototype.initialize.apply(this);
   },
