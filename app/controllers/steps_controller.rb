@@ -34,15 +34,12 @@ class StepsController < ApplicationController
 
     if @step.save
       #update chain
-      debugger
-
       if @step.rank > 17
         @step.chain.update_attributes(:is_completed => true)
       else
         @step.chain.update_attributes(:is_assigned => false, :step_counter => 0)
       end
 
-      debugger
       #create doNotPlay association between user/chain
       DoNotPlay.create!(:user_id => current_user.id, :chain_id => @step.chain.id)
 
