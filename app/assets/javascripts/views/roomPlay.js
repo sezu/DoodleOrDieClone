@@ -142,8 +142,10 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
       //user room timeline instead maybe
       _.extend(params, {
         chain_id: chain_id,
-        rank: this.next_step.rank + 1
+        rank: this.next_step.get("rank") + 1
        })
+
+       debugger;
 
       this.model.chains().get(chain_id).steps().create(params)
 

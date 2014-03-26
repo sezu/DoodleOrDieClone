@@ -34,6 +34,8 @@ class StepsController < ApplicationController
 
     if @step.save
       #update chain
+      debugger
+
       if @step.rank > 17
         @step.chain.update_attributes(:is_completed => true)
       else
