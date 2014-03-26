@@ -145,8 +145,6 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
         rank: this.next_step.get("rank") + 1
        })
 
-       debugger;
-
       this.model.chains().get(chain_id).steps().create(params)
 
     } else {
