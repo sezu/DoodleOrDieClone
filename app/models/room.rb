@@ -15,4 +15,12 @@ class Room < ActiveRecord::Base
 
   has_many :chains, :dependent => :destroy
   has_many :steps, :through => :chains, :source => :steps
+
+  def find_valid_chain(user_id)
+    invalid_chains = self.chains
+        .joins(:do_not_plays)
+        .where("do_not_plays.user_id = #{user_id}")
+
+    self.chains.where(:is_completed => false, :is_assigned => false) - invalid_chains
+  end
 end

@@ -8,24 +8,18 @@ class ChainsController < ApplicationController
 
   def create
     @chain = Chain.new(room_id: params[:room_id])
-    @chain.steps.build(:image => params[:image], :description => params[:description],
-                       :user_id => current_user.id)
+    @chain.steps.build(
+      :image => params[:image],
+      :description => params[:description],
+      :user_id => current_user.id,
+      :rank => params[:rank]
+    )
 
     if @chain.save
       render json: @chain
-    else
-      render json: { errors: @chain.errors.full_messages }, status: 422
-    end
-  end
 
-  def update
-    @chain = Chain.find(params[:id])
-    @chain.skip_counter += 1
-    @chain.is_compelted = true if @chain.skip_counter > 5
-
-
-    if @chain.update_attributes(room_params)
-      render json: @chain
+      #create doNotPlay association between user/chain
+      DoNotPlay.create!(:user_id => current_user.id, :chain_id => @chain.id)
     else
       render json: { errors: @chain.errors.full_messages }, status: 422
     end

@@ -27,6 +27,8 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     this.timeline = [];
     this.timelineIndex = this.model.userTimeline().length - 1;
 
+    if(this.timelineIndex.length < 0)
+      return;
 
     var steps = this.model.userTimeline().models;
     var counter = this.timelineIndex;
@@ -36,9 +38,9 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
         var stepShow = new DoodleOrDie.Views.StepShowView({
           model: steps[counter],
-          zoom: 0.2,
-          width: 120,
-          height: 80,
+          zoom: 0.166,
+          width: 100,
+          height: 66.6,
           isLinkable: true,
           uniqueID: "timeline"
         })
@@ -55,8 +57,9 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
   skip: function(){
     event.preventDefault();
+    //update skip counter and create doNotPlay association
+    this.next_step.save();
     this.fetchStepToPlay(this.renderNextStep.bind(this));
-    //somehow update skip counter on chain_id
   },
 
   renderNextStep: function (next_step) {
@@ -137,12 +140,20 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
       //create new step
       //might be making this on wrong collection
       //user room timeline instead maybe
-      _.extend(params, { chain_id: chain_id })
+      _.extend(params, {
+        chain_id: chain_id,
+        rank: this.next_step.rank + 1
+       })
+
       this.model.chains().get(chain_id).steps().create(params)
 
     } else {
     //create new chain and new step if no chain_id
-      _.extend(params, { room_id: this.model.id })
+      _.extend(params, {
+        room_id: this.model.id,
+        rank: 1
+      })
+
       this.model.chains().create(params)
     }
 

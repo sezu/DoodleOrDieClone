@@ -14,6 +14,12 @@
 
 @import "bootstrap";
 
+$PaintWidth: 600;
+
+.container {
+  width: 980px;
+}
+
 body {
   background-color: #B8B8FF;
   font-family: 'Elsie', cursive;
@@ -53,8 +59,8 @@ body {
   background-color: white;
   margin-left: 4px;
   margin-right: 4px;
-  height: 80px;
-  width: 120px;
+  height: 66px;
+  width: 100px;
 
   /*min-width: 100%;
   min-height: 100%;*/
@@ -88,7 +94,7 @@ canvas {
   float: left;
   width: 330px;
   height: 300px;
-  margin-left: 10px;
+  margin-left: 20px;
   margin-top: 10px;
 }
 
@@ -403,7 +409,7 @@ canvas {
   width: 330px;
   margin-bottom: 20px;
   margin-top: 15px;
-  margin-left: 10px;
+  margin-left: 20px;
   background-color: #84F5D4;
   border: 5px solid white;
   position: relative;
@@ -503,4 +509,10 @@ canvas {
 #ColorPicker div.hexClose:hover {
 	text-shadow: 0 0 20px #fff;
 	color: #FF3DBD;
+}
+
+@media (max-width: 1199px) {
+  .container {
+    width: 700px;
+  }
 }

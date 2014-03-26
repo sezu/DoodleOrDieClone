@@ -2,14 +2,29 @@ class StepsController < ApplicationController
   def fetch_next_step
     #grab a random valid step
     @room = Room.find(params[:room_id])
-    @valid_chain = @room.chains.where(:is_completed => false, :is_assigned => false).sample
+    @valid_chain = @room.find_valid_chain(current_user.id).sample
 
     if @valid_chain
-      #@valid_chain.update_attributes(:is_assigned => true)
+      @valid_chain.update_attributes(:is_assigned => true)
       render json: @valid_chain.steps.last
     else
-      #create a new chain? or something?
-      render json: { errors: "kwrgwojhfwfoh" }, status: 404
+      render json: { errors: "No valid chain found, start new chain!" }, status: 404
+    end
+  end
+
+  def skip
+    @chain = Step.find(params[:id]).chain
+    @chain.skip_counter += 1
+    @chain.is_completed = true if @chain.skip_counter > 10
+    @chain.is_assigned = false
+
+    if @chain.save
+      #create doNotPlay association between user/chain
+      DoNotPlay.create!(:user_id => current_user.id, :chain_id => @chain.id)
+
+      render json: @chain
+    else
+      render json: { errors: @chain.errors.full_messages }, status: 422
     end
   end
 
@@ -17,11 +32,19 @@ class StepsController < ApplicationController
     @step = Step.new(step_params)
     @step.user_id = current_user.id
 
-    #add some kind of presence check for either desc/url
-
     if @step.save
+      #update chain
+      if @step.rank > 17
+        @step.chain.update_attributes(:is_completed => true)
+      else
+        @step.chain.update_attributes(:is_assigned => false, :step_counter => 0)
+      end
+
+      debugger
+      #create doNotPlay association between user/chain
+      DoNotPlay.create!(:user_id => current_user.id, :chain_id => @step.chain.id)
+
       render json: @step
-      #needs to go to next thing to play, gotta figure out how this will work
     else
       render json: { errors: @step.errors.full_messages }, status: 422
     end
@@ -36,6 +59,6 @@ class StepsController < ApplicationController
   private
 
   def step_params
-    params.require(:step).permit(:description, :image, :chain_id)
+    params.require(:step).permit(:description, :image, :chain_id, :rank)
   end
 end

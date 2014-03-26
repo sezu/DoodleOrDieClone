@@ -6,24 +6,16 @@ class RoomsController < ApplicationController
   end
 
   def show
-    #returns room -> chains -> steps
-    @room = Room.find(params[:id])
-    @chains = @room.chains
-    @steps = {}
-
-    p "START!"
-    timer = Time.now
-    #using cache instead of doing this!!!!!
+    # @room = Room.find(params[:id])
+    # @chains = @room.chains
+    # @steps = {}
+    #
     # @chains.each do |chain|
-    #   @steps[chain.id] = chain.steps
+    #   @steps[chain.id] = chain.steps[-3..-1]
     # end
 
-    @chains.each do |chain|
-      @steps[chain.id] = chain.steps[-3..-1]
-    end
-
-    p "END"
-    p Time.now - timer
+    @room = Room.find(params[:id])
+    @chains = @room.chains.includes(:steps)
   end
 
   def create

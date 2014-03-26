@@ -16,4 +16,5 @@ class Chain < ActiveRecord::Base
 
   belongs_to :room
   has_many :steps, :inverse_of => :chain, :dependent => :destroy
+  has_many :do_not_plays, :inverse_of => :chain, :dependent => :destroy
 end
