@@ -1,5 +1,4 @@
 DoodleOrDie.Models.Step = Backbone.Model.extend({
-  urlRoot: "/steps",
   //WRONG!
 
   is_image: function () {
