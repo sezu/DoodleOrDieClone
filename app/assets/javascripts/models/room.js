@@ -1,5 +1,5 @@
 DoodleOrDie.Models.Room = Backbone.Model.extend({
-  rootUrl: "/rooms",
+  urlRoot: "/rooms",
 
   chains: function() {
     this.chains_collection = this.chains_collection ||
