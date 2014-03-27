@@ -22,11 +22,12 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
   events: {
     "click #skip": "skip",
-    "submit #step-form": "submit"
+    "submit #step-form": "submit",
+    "click #timeline-prev": "prevTimeline",
+    "click #timeline-next": "nextTimeline"
   },
 
   createStepTimeline: function() {
-    console.log(this)
     if(this.timelineCreated){
       return;
     }
@@ -88,6 +89,16 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     }
 
     this.render()
+  },
+
+  prevTimeline: function(event) {
+    event.preventDefault();
+
+  },
+
+  nextTimeline: function(event) {
+    event.preventDefault();
+
   },
 
   skip: function(){
@@ -192,7 +203,8 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
         rank: 1
       })
 
-      this.model.chains().create(params)
+      var chain = this.model.chains().create(params)
+      //Fix this to add to timeline!
     }
 
     this.fetchStepToPlay(this.renderNextStep.bind(this));

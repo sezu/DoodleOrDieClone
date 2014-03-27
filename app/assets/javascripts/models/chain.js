@@ -13,6 +13,7 @@ DoodleOrDie.Models.Chain = Backbone.Model.extend({
   },
 
   parse: function(resp){
+
     if(resp.steps){
       this.steps().set(resp.steps);
 

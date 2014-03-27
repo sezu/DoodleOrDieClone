@@ -16,10 +16,12 @@ class ChainsController < ApplicationController
     )
 
     if @chain.save
-      render json: @chain
 
       #create doNotPlay association between user/chain
       DoNotPlay.create!(:user_id => current_user.id, :chain_id => @chain.id)
+      @steps = @chain.steps
+
+      render "chains/create" #Figure this shit out!!!
     else
       render json: { errors: @chain.errors.full_messages }, status: 422
     end
