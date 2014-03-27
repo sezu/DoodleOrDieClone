@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   attr_reader :password, :password2
 
   validate :passwords_match
-  validates :email, :uniqueness => true, :allow_nil => true
+  validates :email, :uniqueness => true, :allow_blank => true
   validates :username, :presence => true
   validates :password, :length => { :minimum => 6, :allow_nil => true }
   validates :password_digest, :presence => { :message => "Password can't be blank" }

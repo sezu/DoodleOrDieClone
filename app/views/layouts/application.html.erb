@@ -19,7 +19,9 @@
 
     <% if logged_in? %>
 
-    <!-- Signed in as: <%=current_user.username%><%= button_to "Sign Out", session_url, :method => :delete %> -->
+
+
+    Signed in as: <%=current_user.username%><%= button_to "Sign Out", session_url, :method => :delete %>
 
       <ul class="nav navbar-nav">
         <li><a href="/#/rooms/1">Explore</a></li>
@@ -37,16 +39,13 @@
         </li>
       </ul>
 
-    <% else %>
+  <% else %>
       <ul class="nav navbar-nav">
         <li><a href="/#/rooms/1">Explore</a></li>
         <li><a href="<%=new_user_url%>">Create Account</a></li>
         <li><a href="<%=new_session_url%>">Sign In</a></li>
         <li><a href="/#">About</a></li>
       </ul>
-
-  <!-- <%= link_to "Sign Up", new_user_url %>
-  <%= link_to "Sign In", new_session_url %> -->
   <% end %>
 
   <!-- class="active" on li to make it darker -->
