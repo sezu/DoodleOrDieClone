@@ -4,7 +4,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   initialize: function(options) {
     Backbone.CompositeView.prototype.initialize.apply(this);
 
-    this.listenTo(this.model.userTimeline(), "sync refresh", this.addStepTimeline);
+    this.listenTo(this.model.userTimeline(), "sync", this.addStepTimeline);
 
     this.fetchStepToPlay(this.renderNextStep.bind(this));
     this.missionText = "Loading..."
@@ -145,7 +145,12 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
         rank: this.next_step.get("rank") + 1
        })
 
-      this.model.chains().get(chain_id).steps().create(params)
+       debugger;
+
+       this.model.userTimeline().create(params);
+
+       //build this on timeline instead - THIS DOESNT EXIST ANYMORE!!!!
+       //this.model.chains().get(chain_id).steps().create(params)
 
     } else {
     //create new chain and new step if no chain_id

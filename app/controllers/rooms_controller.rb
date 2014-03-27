@@ -6,16 +6,8 @@ class RoomsController < ApplicationController
   end
 
   def show
-    # @room = Room.find(params[:id])
-    # @chains = @room.chains
-    # @steps = {}
-    #
-    # @chains.each do |chain|
-    #   @steps[chain.id] = chain.steps[-3..-1]
-    # end
-
     @room = Room.find(params[:id])
-    @chains = @room.chains.includes(:steps).order( "RANDOM()" ).limit(4)
+    @chains = @room.chains.includes(:steps)#.order( "RANDOM()" ).limit(4)
   end
 
   def create
