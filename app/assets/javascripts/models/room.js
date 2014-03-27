@@ -26,11 +26,6 @@ DoodleOrDie.Models.Room = Backbone.Model.extend({
       delete resp.chains;
     }
 
-    // if(resp.user_steps){
-    //   this.currUserSteps().set(resp.user_steps)
-    //   delete resp.user_steps;
-    // }
-
-    return resp
+    return resp;
   }
 });

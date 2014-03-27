@@ -25,6 +25,7 @@ group :doc do
 end
 
 gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
+gem 'thin'
 
 group :development do
   gem 'better_errors'

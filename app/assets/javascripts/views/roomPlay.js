@@ -4,10 +4,12 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   initialize: function(options) {
     Backbone.CompositeView.prototype.initialize.apply(this);
 
-    this.listenTo(this.model.userTimeline(), "sync", this.addStepTimeline);
+    this.listenTo(this.model.userTimeline(), "sync", this.createStepTimeline);
+    this.listenTo(this.model.userTimeline(), "add", this.addToTimeline);
 
     this.fetchStepToPlay(this.renderNextStep.bind(this));
     this.missionText = "Loading..."
+    this.timelineCreated = false
   },
 
   render: function() {
@@ -23,7 +25,12 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     "submit #step-form": "submit"
   },
 
-  addStepTimeline: function() {
+  createStepTimeline: function() {
+    console.log(this)
+    if(this.timelineCreated){
+      return;
+    }
+
     this.timeline = [];
     this.timelineIndex = this.model.userTimeline().length - 1;
 
@@ -46,13 +53,41 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
         })
 
         this.timeline.push(stepShow)
-        this.addSubview("#timeline", stepShow);
       }
-
       counter--;
     }
 
+    for(var i = this.timeline.length - 1; i >= 0; i--) {
+      this.addSubview("#timeline", this.timeline[i]);
+    }
+
+    this.timelineCreated = true;
     this.render();
+  },
+
+  addToTimeline: function(step) {
+    if(!this.timelineCreated || !step.is_image())
+    {
+     return
+    }
+
+    var stepShow = new DoodleOrDie.Views.StepShowView({
+      model: step,
+      zoom: 0.166,
+      width: 100,
+      height: 66.6,
+      isLinkable: true,
+      uniqueID: "timeline"
+    })
+
+    this.timeline.unshift(stepShow)
+    this.addSubview("#timeline", stepShow);
+
+    if(this.timeline.length > 8){
+      this.removeSubview("#timeline", this.timeline.pop())
+    }
+
+    this.render()
   },
 
   skip: function(){
