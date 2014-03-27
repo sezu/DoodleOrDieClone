@@ -33,15 +33,15 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     }
 
     this.timeline = [];
-    this.timelineIndex = this.model.userTimeline().length - 1;
+    this.timelineIndex = this.timelineIndex || this.model.userTimeline().imageSteps().length;
 
-    if(this.timelineIndex.length < 0)
+    if(this.timelineIndex < 0)
       return;
 
-    var steps = this.model.userTimeline().models;
-    var counter = this.timelineIndex;
+    var steps = this.model.userTimeline().imageSteps();
+    var counter = this.timelineIndex - 1;
 
-    while(this.timeline.length < 8 && counter > 0) {
+    while(this.timeline.length < 8 && counter >= 0) {
       if(steps[counter].is_image()) {
 
         var stepShow = new DoodleOrDie.Views.StepShowView({
@@ -81,6 +81,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
       uniqueID: "timeline"
     })
 
+    this.timelineIndex += 1;
     this.timeline.unshift(stepShow)
     this.addSubview("#timeline", stepShow);
 
@@ -94,11 +95,36 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   prevTimeline: function(event) {
     event.preventDefault();
 
+    //no prev drawings
+    if(this.timelineIndex < 9)
+      return
+
+    this.timelineIndex -= 8;
+
+    for(var i = 0; i < this.timeline.length; i++) {
+      this.removeSubview("#timeline", this.timeline[i]);
+    }
+
+    this.timelineCreated = false;
+    this.createStepTimeline();
   },
 
   nextTimeline: function(event) {
     event.preventDefault();
 
+    //no future drawings
+
+    if(this.timelineIndex + 8 > this.model.userTimeline().imageSteps().length)
+      return
+
+    this.timelineIndex += 8;
+
+    for(var i = 0; i < this.timeline.length; i++) {
+      this.removeSubview("#timeline", this.timeline[i]);
+    }
+
+    this.timelineCreated = false;
+    this.createStepTimeline();
   },
 
   skip: function(){
