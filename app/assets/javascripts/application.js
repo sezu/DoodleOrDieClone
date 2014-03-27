@@ -16,6 +16,7 @@
 //= require backbone
 //= require doodle_or_die_clone
 //= require jquery.serializeJSON.min.js
+//= require bootstrap.js
 
 //= require Color.Picker.Custom.js
 //= require Color.Space.js

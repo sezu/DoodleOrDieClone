@@ -1,12 +1,11 @@
 <div id="chain_header">
-  <a href="#/rooms/<%=chain.escape("room_id")%>">In room: <%=chain.escape("room_id")%></a>
-
+  <!-- <a href="#/rooms/<%=chain.escape("room_id")%>">In room: <%=chain.escape("room_id")%></a> -->
+<span id="status">
   <% if(chain.is_over()){ %>
-    <div>Status: Completed!</div>
+    Status: Completed!
   <% } else { %>
-    <div>Status: In Progress!</div>
+    Status: In Progress!
   <% } %>
-</div>
-<br>
+</span>
 
 <div id="steps"></div>

@@ -94,12 +94,18 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
   prevTimeline: function(event) {
     event.preventDefault();
+    var index = $("body").width() >= 1200 ? 8 : 5
 
     //no prev drawings
-    if(this.timelineIndex < 9)
+    if(this.timelineIndex <= index)
       return
 
-    this.timelineIndex -= 8;
+    this.timelineIndex -= index;
+
+    if(this.timelineIndex < index && this.model.userTimeline().imageSteps().length >= index)
+    {
+      this.timelineIndex = index;
+    }
 
     for(var i = 0; i < this.timeline.length; i++) {
       this.removeSubview("#timeline", this.timeline[i]);
@@ -111,13 +117,17 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
   nextTimeline: function(event) {
     event.preventDefault();
+    var index = $("body").width() >= 1200 ? 8 : 5
+    var max = this.model.userTimeline().imageSteps().length
 
-    //no future drawings
-
-    if(this.timelineIndex + 8 > this.model.userTimeline().imageSteps().length)
+    if(this.timelineIndex === max)
       return
 
-    this.timelineIndex += 8;
+    this.timelineIndex += index;
+    //no future drawings
+    if(this.timelineIndex > max) {
+      this.timelineIndex = max
+    }
 
     for(var i = 0; i < this.timeline.length; i++) {
       this.removeSubview("#timeline", this.timeline[i]);
