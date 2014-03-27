@@ -145,8 +145,6 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
         rank: this.next_step.get("rank") + 1
        })
 
-       debugger;
-
        this.model.userTimeline().create(params);
 
        //build this on timeline instead - THIS DOESNT EXIST ANYMORE!!!!
