@@ -132,8 +132,8 @@ var Sketch = function(config) { "use strict";
 
           var hackX = coords.x + .05;
           var hackY = coords.y + .05;
-          var hack2X = coords.x //- .01;
-          var hack2Y = coords.y //- .01;
+          var hack2X = coords.x - .01;
+          var hack2Y = coords.y - .01;
 
           var hack = {
             x: hackX,
@@ -332,13 +332,17 @@ var Sketch = function(config) { "use strict";
 
 
     ///Hack for fixing weird line splitting shit
-    for (var n = 0; n < length; n ++) {
-      ctx.beginPath()
-      var p = path[n]
-      ctx.arc(p.x, p.y, p.lineWidth/2.0, 0, 2*Math.PI)
+    var p = path[0];
+
+    for (var n = 2; n < length; n ++) {
+      var poop = path[n];
+
+      ctx.beginPath();
+      ctx.arc(poop.x, poop.y, p.lineWidth/2.0, 0, 2*Math.PI)
       ctx.fillStyle = p.strokeStyle;
       ctx.fill();
     }
+
 	};
 	// Reset and Restore the settings on the <canvas>.
 	this.layerReset = function() {

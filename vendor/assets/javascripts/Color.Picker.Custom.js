@@ -39,6 +39,7 @@ Color.Picker = function (conf) {
 	this.container = conf.container || document.body;
 	this.margin = conf.margin || 12; // margins on colorpicker
 	this.offset = this.margin / 2;
+
 	this.conf = {
 		"hue": {
 			column: 0,
@@ -54,8 +55,8 @@ Color.Picker = function (conf) {
 		},
 		"alpha": {
 			column: 2,
-			enable: true,
-			width: modules.alpha.width || 30,
+			enable: false, //disabled!!!
+			width: modules.alpha.width || 0,
 			height: modules.alpha.height || 200
 		}
 	};
@@ -68,8 +69,8 @@ Color.Picker = function (conf) {
 	var plugin = document.createElement("div");
 	plugin.id = "ColorPicker";
 	///
-	var pickerWidth = 0;
-	var pickerHeight = 0;
+	var pickerWidth = 5; //0
+	var pickerHeight = 25; //0
 	var row = -1;
 	for (var key in this.conf) {
 		pickerWidth += this.conf[key].width + this.margin + this.offset - 7;

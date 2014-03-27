@@ -16,7 +16,6 @@ DoodleOrDie.Views.ChainPreviewView = Backbone.CompositeView.extend({
       if(steps.length < 3)
         return this
 
-        debugger;
       lastDesc = steps[steps.length - 3]
       lastImage = steps[steps.length - 2]
     } else {
