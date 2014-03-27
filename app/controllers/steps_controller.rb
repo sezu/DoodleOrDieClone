@@ -43,8 +43,6 @@ class StepsController < ApplicationController
       #create doNotPlay association between user/chain
       DoNotPlay.create!(:user_id => current_user.id, :chain_id => @step.chain.id)
 
-
-      debugger
       render json: @step
     else
       render json: { errors: @step.errors.full_messages }, status: 422

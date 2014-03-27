@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
     # end
 
     @room = Room.find(params[:id])
-    @chains = @room.chains.includes(:steps)
+    @chains = @room.chains.includes(:steps).order( "RANDOM()" ).limit(4)
   end
 
   def create

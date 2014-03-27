@@ -10,14 +10,46 @@
 </head>
 <body>
 
-<%= link_to "DoodleOrDie", root_url %>
-<% if logged_in? %>
-  <br>
-  Signed in as: <%=current_user.username%><%= button_to "Sign Out", session_url, :method => :delete %>
-<% else %>
-  <%= link_to "Sign Up", new_user_url %>
-  <%= link_to "Sign In", new_session_url %>
-<% end %>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/#">DoodleOrDie!</a>
+    </div>
+
+    <% if logged_in? %>
+    Signed in as: <%=current_user.username%><%= button_to "Sign Out", session_url, :method => :delete %>
+    <% else %>
+
+      <ul class="nav navbar-nav">
+        <li><a href="/#/rooms/1">Explore</a></li>
+        <li><a href="<%=new_user_url%>">Create Account</a></li>
+        <li><a href="<%=new_session_url%>">Sign In</a></li>
+        <li><a href="/#">About</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+
+  <!-- <%= link_to "Sign Up", new_user_url %>
+  <%= link_to "Sign In", new_session_url %> -->
+  <% end %>
+
+  <!-- class="active" on li to make it darker -->
+
+  </div>
+</nav>
 
 <%= yield %>
 
