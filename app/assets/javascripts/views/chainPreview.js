@@ -30,13 +30,11 @@ DoodleOrDie.Views.ChainPreviewView = Backbone.CompositeView.extend({
       uniqueID: 'preview'
     })
 
-    var imageShow = new DoodleOrDie.Views.StepShowView({
+    debugger;
+
+    var imageShow = new DoodleOrDie.Views.StepImageShowView({
       model: lastImage,
-      uniqueID: 'preview',
-      zoom: 0.5,
-      width: 300,
-      height: 200,
-      isLinkable: true
+      uniqueID: 'preview'
     })
 
     var content = this.template({ chain: this.model });

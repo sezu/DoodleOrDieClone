@@ -17,6 +17,7 @@ DoodleOrDie.Models.Room = Backbone.Model.extend({
 
   parse: function(resp) {
     if(resp.chains){
+
       this.chains().set(resp.chains);
 
       this.chains().each(function (chain, index) {
