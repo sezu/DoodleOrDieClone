@@ -210,7 +210,8 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
     } else {
 
-      var params = { image: this.stepForm.sketch.toString() }
+      var params = { image: this.stepForm.sketch.toString(),
+                     aws_image: this.stepForm.sketch.toDataURL() }
 
       if(params["image"] === "[]") {
         console.log("Form cannot be blank!")
@@ -219,18 +220,12 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     }
 
     if(chain_id) {
-      //create new step
-      //might be making this on wrong collection
-      //user room timeline instead maybe
       _.extend(params, {
         chain_id: chain_id,
         rank: this.next_step.get("rank") + 1
        })
 
        this.model.userTimeline().create(params);
-
-       //build this on timeline instead - THIS DOESNT EXIST ANYMORE!!!!
-       //this.model.chains().get(chain_id).steps().create(params)
 
     } else {
     //create new chain and new step if no chain_id

@@ -10,6 +10,7 @@ class ChainsController < ApplicationController
     @chain = Chain.new(room_id: params[:room_id])
     @chain.steps.build(
       :image => params[:image],
+      :aws_image => params[:aws_image],
       :description => params[:description],
       :user_id => current_user.id,
       :rank => params[:rank]

@@ -30,7 +30,7 @@ class TimelinesController < ApplicationController
   private
 
   def step_params
-    params.require(:timeline).permit(:description, :image, :chain_id, :rank)
+    params.require(:timeline).permit(:description, :image, :chain_id, :rank, :aws_image)
   end
 end
 

@@ -372,7 +372,7 @@ var Sketch = function(config) { "use strict";
 		ctx.drawImage(layer0, 0, 0);
 		ctx.drawImage(layer1, 0, 0);
 		ctx.drawImage(layer2, 0, 0);
-		return canvas.toDataURL("image/png");
+		return canvas.toDataURL(); //"image/png"
 	};
 	// Export to vector paths.
 	this.toString = function() {

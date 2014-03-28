@@ -2,13 +2,18 @@
 #
 # Table name: steps
 #
-#  id          :integer          not null, primary key
-#  user_id     :integer
-#  chain_id    :integer
-#  description :text
-#  image       :text
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id                     :integer          not null, primary key
+#  user_id                :integer
+#  chain_id               :integer
+#  description            :text
+#  image                  :text
+#  created_at             :datetime
+#  updated_at             :datetime
+#  rank                   :integer
+#  aws_image_file_name    :string(255)
+#  aws_image_content_type :string(255)
+#  aws_image_file_size    :integer
+#  aws_image_updated_at   :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
