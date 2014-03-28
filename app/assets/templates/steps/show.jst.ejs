@@ -1,3 +1,5 @@
+<!-- refactor this bitch -->
+
 <% if(step.is_image()) { %>
   <div class="step-image">
 
@@ -16,7 +18,13 @@
   </div>
 
 <% } else { %>
-    <div class="step-desc">
+
+    <%if(this.uniqueID === "preview") {%>
+        <div class="step-desc-preview">
+      <% } else { %>
+        <div class="step-desc">
+      <% } %>
+
       <%=step.escape("description")%>
     </div>
 <% }; %>
@@ -27,7 +35,9 @@
     User: <%=step.get("username")%>
 
     <% if(step.is_image()) { %>
-      <button class="animate">Animate</button>
+      <span class="animate-btn">
+        See it drawn! <button class="animate animate-thing btn-primary">Animate</button>
+      <span>
     <% } %>
   </div>
 <% } %>

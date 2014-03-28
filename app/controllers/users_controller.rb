@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login!(@user)
-      redirect_to root_url
+      redirect_to "#/rooms/1"
     else
       flash.now[:errors] = @user.errors.full_messages
       p @user.errors.full_messages

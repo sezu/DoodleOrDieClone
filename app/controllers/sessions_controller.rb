@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if @user
       login!(@user)
-      redirect_to new_session_url
+      redirect_to "#/rooms/1"
     else
       flash.now[:errors] = "Invalid login!"
       render "new"
