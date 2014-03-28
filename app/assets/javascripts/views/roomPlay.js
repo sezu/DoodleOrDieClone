@@ -186,7 +186,6 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   submit: function(event) {
     event.preventDefault()
     $("#step-submit").text("Loading...")
-    console.log("loading")
 
     var chain_id = this.next_step.get("chain_id")
 
