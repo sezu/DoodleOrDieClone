@@ -186,6 +186,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   submit: function(event) {
     event.preventDefault()
     $("#step-submit").text("Loading...")
+    console.log("loading")
 
     var chain_id = this.next_step.get("chain_id")
 
@@ -223,17 +224,18 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
     var that = this
       this.model.chains().create({ room_id: this.model.id }, {
-        wait: true,
         success: function(resp){
+          console.log(resp)
 
           _.extend(params, {
             chain_id: resp.id,
             rank: 1
           })
 
-          $("#step-submit").text("Submit!")
+          that.model.userTimeline().create(params, {wait: true});
           that.fetchStepToPlay(that.renderNextStep.bind(that));
-          that.model.userTimeline().create(params, { wait: true });
+          $("#step-submit").text("Submit!")
+          console.log("fuck shit")
         }
       })
       //Fix this to add to timeline!
