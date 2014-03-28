@@ -8,21 +8,13 @@ class ChainsController < ApplicationController
 
   def create
     @chain = Chain.new(room_id: params[:room_id])
-    @chain.steps.build(
-      :image => params[:image],
-      :aws_image => params[:aws_image],
-      :description => params[:description],
-      :user_id => current_user.id,
-      :rank => params[:rank]
-    )
 
     if @chain.save
 
       #create doNotPlay association between user/chain
       DoNotPlay.create!(:user_id => current_user.id, :chain_id => @chain.id)
-      @steps = @chain.steps
 
-      render "chains/create" #Figure this shit out!!!
+      render json: @chain
     else
       render json: { errors: @chain.errors.full_messages }, status: 422
     end
@@ -33,5 +25,4 @@ class ChainsController < ApplicationController
     @chain.destroy
     render json: nil
   end
-
 end

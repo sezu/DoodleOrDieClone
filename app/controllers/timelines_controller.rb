@@ -19,7 +19,8 @@ class TimelinesController < ApplicationController
       #create doNotPlay association between user/chain
       DoNotPlay.create!(:user_id => current_user.id, :chain_id => @step.chain.id)
 
-      render json: @step
+      #returning too many things here
+      render "timelines/create"
     else
       render json: { errors: @step.errors.full_messages }, status: 422
     end

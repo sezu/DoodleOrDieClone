@@ -60,18 +60,14 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   },
 
   addToTimeline: function(step) {
+    $("#step-submit").text("Submit!")
     if(!this.timelineCreated || !step.is_image())
     {
      return
     }
 
-    var stepShow = new DoodleOrDie.Views.StepShowView({
-      model: step,
-      zoom: 0.166,
-      width: 100,
-      height: 66.6,
-      isLinkable: true,
-      uniqueID: "timeline"
+    var stepShow = new DoodleOrDie.Views.StepTimelineShowView({
+      model: step
     })
 
     this.timelineIndex += 1;
@@ -82,6 +78,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
       this.removeSubview("#timeline", this.timeline.pop())
     }
 
+    debugger;
     this.render()
   },
 
@@ -89,13 +86,14 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     event.preventDefault();
     var index = $("body").width() >= 1200 ? 8 : 5
 
+
     //no prev drawings
     if(this.timelineIndex <= index)
       return
 
     this.timelineIndex -= index;
 
-    if(this.timelineIndex < index && this.model.userTimeline().imageSteps().length >= index)
+    if(this.timelineIndex < index && this.model.userTimeline().length >= index)
     {
       this.timelineIndex = index;
     }
@@ -111,7 +109,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   nextTimeline: function(event) {
     event.preventDefault();
     var index = $("body").width() >= 1200 ? 8 : 5
-    var max = this.model.userTimeline().imageSteps().length
+    var max = this.model.userTimeline().length
 
     if(this.timelineIndex === max)
       return
@@ -189,6 +187,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
   submit: function(event) {
     event.preventDefault()
+    $("#step-submit").text("Loading...")
 
     var chain_id = this.next_step.get("chain_id")
 
@@ -222,12 +221,19 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
     } else {
     //create new chain and new step if no chain_id
-      _.extend(params, {
-        room_id: this.model.id,
-        rank: 1
-      })
+    //var chain = this.model.chains().create(params)
 
-      var chain = this.model.chains().create(params)
+    var that = this
+      this.model.chains().create({ room_id: this.model.id }, {
+        success: function(resp){
+          console.log()
+          _.extend(params, {
+            chain_id: resp.id,
+            rank: 1
+          })
+          that.model.userTimeline().create(params, {wait: true});
+        }
+      })
       //Fix this to add to timeline!
     }
 
