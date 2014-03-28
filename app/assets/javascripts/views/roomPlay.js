@@ -60,7 +60,6 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   },
 
   addToTimeline: function(step) {
-    $("#step-submit").text("Submit!")
     if(!this.timelineCreated || !step.is_image())
     {
      return
@@ -220,17 +219,19 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
     } else {
     //create new chain and new step if no chain_id
-    //var chain = this.model.chains().create(params)
 
     var that = this
       this.model.chains().create({ room_id: this.model.id }, {
+        wait: true,
         success: function(resp){
-          console.log()
+
           _.extend(params, {
             chain_id: resp.id,
             rank: 1
           })
-          that.model.userTimeline().create(params, {wait: true});
+
+          $("#step-submit").text("Submit!")
+          that.model.userTimeline().create(params, { wait: true });
         }
       })
       //Fix this to add to timeline!
