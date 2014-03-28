@@ -30,8 +30,6 @@ DoodleOrDie.Views.ChainPreviewView = Backbone.CompositeView.extend({
       uniqueID: 'preview'
     })
 
-    debugger;
-
     var imageShow = new DoodleOrDie.Views.StepImageShowView({
       model: lastImage,
       uniqueID: 'preview'

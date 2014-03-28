@@ -17,7 +17,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     this.$el.html(content)
 
     this.renderSubviews();
-    return this;x
+    return this;
   },
 
   events: {
@@ -32,7 +32,8 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
       return;
     }
 
-    var steps = this.model.userTimeline().models
+    var steps = this.model.userTimeline().steps()
+
     this.timeline = [];
     this.timelineIndex = this.timelineIndex || steps.length;
 
@@ -91,7 +92,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
 
     this.timelineIndex -= index;
 
-    if(this.timelineIndex < index && this.model.userTimeline().length >= index)
+    if(this.timelineIndex < index && this.model.userTimeline().steps().length >= index)
     {
       this.timelineIndex = index;
     }
@@ -107,7 +108,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   nextTimeline: function(event) {
     event.preventDefault();
     var index = $("body").width() >= 1200 ? 8 : 5
-    var max = this.model.userTimeline().length
+    var max = this.model.userTimeline().steps().length
 
     if(this.timelineIndex === max)
       return
@@ -215,7 +216,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
         rank: this.next_step.get("rank") + 1
        })
 
-       this.model.userTimeline().create(params);
+       this.model.userTimeline().create(params, {wait: true});
 
     } else {
 
@@ -224,7 +225,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
         rank: 1
       });
 
-      this.model.chains().create(params)
+      this.model.chains().create(params, {wait: true})
 
     //create new chain and new step if no chain_id
 
