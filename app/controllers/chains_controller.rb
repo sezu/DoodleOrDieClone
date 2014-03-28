@@ -8,6 +8,13 @@ class ChainsController < ApplicationController
 
   def create
     @chain = Chain.new(room_id: params[:room_id])
+    @chain.steps.build(
+      :user_id => current_user.id,
+      :image => params[:image],
+      :description => params[:description],
+      :aws_image => params[:aws_image],
+      :rank => params[:rank]
+      )
 
     if @chain.save
 

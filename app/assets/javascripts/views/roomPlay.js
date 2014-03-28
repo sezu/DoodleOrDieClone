@@ -217,28 +217,35 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
        })
 
        this.model.userTimeline().create(params);
-       this.fetchStepToPlay(this.renderNextStep.bind(this));
 
     } else {
+
+      _.extend(params, {
+        room_id: this.model.id,
+        rank: 1
+      });
+
+      this.model.chains().create(params)
+
     //create new chain and new step if no chain_id
 
-    var that = this
-      this.model.chains().create({ room_id: this.model.id }, {
-        success: function(resp){
-          console.log(resp)
-
-          _.extend(params, {
-            chain_id: resp.id,
-            rank: 1
-          })
-
-          that.model.userTimeline().create(params, {wait: true});
-          that.fetchStepToPlay(that.renderNextStep.bind(that));
-          $("#step-submit").text("Submit!")
-          console.log("fuck shit")
-        }
-      })
+    // var that = this
+    //   this.model.chains().create({ room_id: this.model.id }, {
+    //     success: function(resp){
+    //
+    //       _.extend(params, {
+    //         chain_id: resp.id,
+    //         rank: 1
+    //       })
+    //
+    //       that.model.userTimeline().create(params, {wait: true});
+    //       that.fetchStepToPlay(that.renderNextStep.bind(that));
+    //       $("#step-submit").text("Submit!")
+    //     }
+    //   })
       //Fix this to add to timeline!
     }
+
+    this.fetchStepToPlay(this.renderNextStep.bind(this));
   }
 })
