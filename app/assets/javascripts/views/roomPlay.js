@@ -17,7 +17,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     this.$el.html(content)
 
     this.renderSubviews();
-    return this;
+    return this;x
   },
 
   events: {
@@ -216,6 +216,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
        })
 
        this.model.userTimeline().create(params);
+       this.fetchStepToPlay(this.renderNextStep.bind(this));
 
     } else {
     //create new chain and new step if no chain_id
@@ -231,12 +232,11 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
           })
 
           $("#step-submit").text("Submit!")
+          that.fetchStepToPlay(that.renderNextStep.bind(that));
           that.model.userTimeline().create(params, { wait: true });
         }
       })
       //Fix this to add to timeline!
     }
-
-    this.fetchStepToPlay(this.renderNextStep.bind(this));
   }
 })
