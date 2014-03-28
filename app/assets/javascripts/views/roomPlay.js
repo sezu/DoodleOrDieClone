@@ -78,7 +78,6 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
       this.removeSubview("#timeline", this.timeline.pop())
     }
 
-    debugger;
     this.render()
   },
 
