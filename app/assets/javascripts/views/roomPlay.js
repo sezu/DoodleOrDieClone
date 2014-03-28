@@ -4,12 +4,12 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   initialize: function(options) {
     Backbone.CompositeView.prototype.initialize.apply(this);
 
-    this.timelineCreated = false;
     this.listenTo(this.model.userTimeline(), "sync", this.createStepTimeline);
     this.listenTo(this.model.userTimeline(), "add", this.addToTimeline);
 
     this.fetchStepToPlay(this.renderNextStep.bind(this));
     this.missionText = "Loading..."
+    this.timelineCreated = false
   },
 
   render: function() {
@@ -32,22 +32,29 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
       return;
     }
 
-    var steps = this.model.userTimeline().models
     this.timeline = [];
-    this.timelineIndex = this.timelineIndex || steps.length;
+    this.timelineIndex = this.timelineIndex || this.model.userTimeline().imageSteps().length;
 
     if(this.timelineIndex < 0)
       return;
 
+    var steps = this.model.userTimeline().imageSteps();
     var counter = this.timelineIndex - 1;
 
     while(this.timeline.length < 8 && counter >= 0) {
+      if(steps[counter].is_image()) {
 
-      var stepShow = new DoodleOrDie.Views.StepTimelineShowView({
-        model: steps[counter]
-      })
+        var stepShow = new DoodleOrDie.Views.StepShowView({
+          model: steps[counter],
+          zoom: 0.166,
+          width: 100,
+          height: 66.6,
+          isLinkable: true,
+          uniqueID: "timeline"
+        })
 
-      this.timeline.push(stepShow)
+        this.timeline.push(stepShow)
+      }
       counter--;
     }
 

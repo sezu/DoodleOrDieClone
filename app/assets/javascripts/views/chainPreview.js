@@ -12,14 +12,13 @@ DoodleOrDie.Views.ChainPreviewView = Backbone.CompositeView.extend({
     var lastStep = steps[steps.length - 1];
 
     if(!lastStep.is_image()) {
-      debugger;
+
       if(steps.length < 3)
         return this
 
       lastDesc = steps[steps.length - 3]
       lastImage = steps[steps.length - 2]
     } else {
-
       if(steps.length < 2)
         return this
       lastDesc = steps[steps.length - 2]
@@ -31,8 +30,11 @@ DoodleOrDie.Views.ChainPreviewView = Backbone.CompositeView.extend({
       uniqueID: 'preview'
     })
 
+    debugger;
+
     var imageShow = new DoodleOrDie.Views.StepImageShowView({
-      model: lastImage
+      model: lastImage,
+      uniqueID: 'preview'
     })
 
     var content = this.template({ chain: this.model });

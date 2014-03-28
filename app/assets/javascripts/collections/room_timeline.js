@@ -14,14 +14,11 @@ DoodleOrDie.Collections.RoomTimeline = Backbone.Collection.extend({
     return step.get("created_at")
   },
 
-  parse: function(resp) {
-    return resp.timeline
-  },
-
-  steps: function() {
+  imageSteps: function() {
     var images = [];
 
     for(var i = 0; i < this.models.length; i++) {
+      if (this.models[i].is_image())
       images.push(this.models[i])
     }
 
