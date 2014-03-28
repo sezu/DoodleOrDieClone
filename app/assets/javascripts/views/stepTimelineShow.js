@@ -1,5 +1,5 @@
-DoodleOrDie.Views.StepImageShowView = Backbone.View.extend({
-  template: JST['steps/image'],
+DoodleOrDie.Views.StepTimelineShowView = Backbone.View.extend({
+  template: JST['steps/timeline'],
 
   className: "step",
 
