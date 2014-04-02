@@ -32,7 +32,7 @@
 
 <% if(showInfo) { %>
   <div class="step-info">
-    User: <%=step.get("username")%>
+    User: <%=step.escape("username")%>
 
     <% if(step.is_image()) { %>
       <span class="animate-btn">
