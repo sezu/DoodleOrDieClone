@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @chains = @room.chains.includes(:steps)
+    @chains = @room.chains.includes(:steps).order(:updated_at).reverse
   end
 
   def create

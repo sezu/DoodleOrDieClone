@@ -8,6 +8,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     this.listenTo(this.model.userTimeline(), "sync", this.createStepTimeline);
     this.listenTo(this.model.userTimeline(), "add", this.addToTimeline);
     
+    //unassigns chain so others can play on it
     var that = this
     $(".navbar").on("click", "a", function(e) {that.unassignChain(e) })
     window.addEventListener("beforeunload", function(e) {that.unassignChain(e) })
@@ -255,13 +256,10 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   },
   
   unassignChain: function (event) {
-    console.log("I was ran")
-    
     if(event && event.currentTarget.text === "Play")
       return
     
     if (this.next_step.get("chain_id")) {
-      console.log("made it")
       this.next_step.save(); //unassigns the chain
     }
   }
