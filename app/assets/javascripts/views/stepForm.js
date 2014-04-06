@@ -1,5 +1,6 @@
 DoodleOrDie.Views.StepFormView = Backbone.View.extend({
-
+  // className: "stepform-container",
+  
   template: function() {
     //choose template based on if last step is image or text
     return (this.lastStep.is_image() ? JST['steps/textform'] : JST['steps/canvasform'])

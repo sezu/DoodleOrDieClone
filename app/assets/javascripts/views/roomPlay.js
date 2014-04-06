@@ -11,15 +11,15 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     //unassigns chain so others can play on it
     var that = this
     $(".navbar").on("click", "a", function(e) {that.unassignChain(e) })
-    window.addEventListener("beforeunload", function(e) {that.unassignChain(e) })
+    window.addEventListener("unload", function(e) {that.unassignChain(e) })
 
-    this.fetchStepToPlay(this.renderNextStep.bind(this));
     this.missionText = "Loading..."
+    this.fetchStepToPlay(this.renderNextStep.bind(this));
   },
 
   render: function() {
     var content = this.template({ room: this.model, missionText: this.missionText })
-    this.$el.html(content)
+    this.$el.html(content);
 
     this.renderSubviews();
     return this;
@@ -154,6 +154,7 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     //fetches a valid step from rails
     next_step.fetch({
       success: function() {
+        console.log(next_step.get("chain_id"))
         callback(next_step)
       },
       //if no valid step, create new chain
@@ -258,9 +259,9 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   unassignChain: function (event) {
     if(event && event.currentTarget.text === "Play")
       return
-    
+
     if (this.next_step.get("chain_id")) {
       this.next_step.save(); //unassigns the chain
-    }
+    }    
   }
 })
