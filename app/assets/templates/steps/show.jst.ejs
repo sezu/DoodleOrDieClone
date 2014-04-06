@@ -1,20 +1,6 @@
-<!-- refactor this bitch -->
-
 <% if(step.is_image()) { %>
   <div class="step-image">
-
-    <% if(linkable) { %>
-      <a href="#/chains/<%=step.escape('chain_id')%>">
-        <% if(this.uniqueID === "timeline") { %>
-          <div class="drawAreaTimeline" id="drawArea<%= step.id + this.uniqueID %>"></div>
-          <% } else { %>
-          <div class="drawAreaPreview" id="drawArea<%= step.id + this.uniqueID %>"></div>
-          <% } %>
-      </a>
-    <% } else { %>
-      <div class="drawArea" id="drawArea<%= step.id + this.uniqueID %>"></div>
-    <% }; %>
-
+    <div class="drawArea" id="drawArea<%= step.id + this.uniqueID %>"></div>
   </div>
 
 <% } else { %>
@@ -33,12 +19,15 @@
 <% if(showInfo) { %>
   <div class="step-info">
     <% if(step.is_image()) { %>
+      
       Drawn by: <%=step.escape("username")%>
+      
       <span class="animate-btn">
         See it drawn! <button class="animate animate-thing btn-primary">Animate</button>
-      <span>
+      </span>
     <% } else { %>
-      Described by: <%=step.escape("username")%>
+      
+      <div class="desc-spacer">Described by: <%=step.escape("username")%></div>
     <% } %>
   </div>
 <% } %>

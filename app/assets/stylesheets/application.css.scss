@@ -21,7 +21,7 @@ $PaintWidth: 600;
 }
 
 body {
-  background-color: #B8B8FF;
+  background-color: #B8B8FF;//rgba(119, 202, 229, 0.56); //#B8B8FF; rgba(176, 176, 225, 0.58)
 //  font-family: 'PT Sans', sans-serif;
   font-family: 'PT Sans Caption', sans-serif;
 }
@@ -56,6 +56,12 @@ body {
   color: #E7E7E7;
   text-align: center;
   padding: 10px
+}
+
+.room-header {
+//  text-align: center;
+  font-size: 40px;
+  margin-bottom: 6px;
 }
 
 .example {
@@ -144,6 +150,7 @@ canvas {
   font-size: 20px;
   position: relative;
   margin-bottom: 40px;
+  margin-top: 10px;
 }
 
 .step-image {
@@ -151,15 +158,15 @@ canvas {
 }
 
 #timeline-prev {
-  font-size: 20px;
+  font-size: 16px;
   position: absolute;
-  left: 10px;
+  left: 0px;
 }
 
 #timeline-next {
-  text-align:center;
+  font-size: 16px;
   position: absolute;
-  right: 10px;
+  right: 0px;
 }
 
 #your-timeline {
@@ -169,22 +176,32 @@ canvas {
 
 //CHAIN SHOW
 
+#chain-header {
+  width:600px;
+  margin: auto;
+}
+
 .step-info {
-  font-size: 20px;
+  font-size: 16px;
   position: relative;
-  margin-bottom: 10px;
-//  border: 1px solid black;
+  margin-bottom: 20px;
+  //border: 1px solid black;
+}
+
+.desc-spacer {
+  margin-top: 4px;
 }
 
 .animate-btn {
   position: absolute;
   right: 0px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .animate-thing {
   background-color: #6246aa;
   border-color: white;
+  font-size: 14px;
 }
 
 .animate-thing:hover {
@@ -194,10 +211,6 @@ canvas {
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: 1;
   -webkit-box-shadow: 0 0 20px #FFD11B;
-}
-
-.animate {
-  font-size: 18px;
 }
 
 .btn-primary {
@@ -746,5 +759,9 @@ canvas {
   .spacer2 {
     clear:both;
     height: 20px;
+  }
+  
+  .room-header {
+    width: 625px;
   }
 }
