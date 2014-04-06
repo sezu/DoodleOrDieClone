@@ -255,10 +255,13 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
   },
   
   unassignChain: function (event) {
-    if(event.currentTarget.text === "Play")
+    console.log("I was ran")
+    
+    if(event && event.currentTarget.text === "Play")
       return
     
     if (this.next_step.get("chain_id")) {
+      console.log("made it")
       this.next_step.save(); //unassigns the chain
     }
   }
