@@ -17,8 +17,6 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
   addChainPreviews: function() {
     var view = this;
 
-    //FIX
-
     this.model.chains().each(function(chain){
       var flag = true;
 
@@ -33,7 +31,6 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
         flag = false
       }
 
-      //FIX
       if(flag) {
         var chainPreview = new DoodleOrDie.Views.ChainPreviewView({
           model: chain

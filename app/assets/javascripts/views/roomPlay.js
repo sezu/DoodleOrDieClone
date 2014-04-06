@@ -7,6 +7,10 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     this.timelineCreated = false;
     this.listenTo(this.model.userTimeline(), "sync", this.createStepTimeline);
     this.listenTo(this.model.userTimeline(), "add", this.addToTimeline);
+    
+    var that = this
+    $(".navbar").on("click", "a", function(e) {that.unassignChain(e) })
+    window.addEventListener("beforeunload", function(e) {that.unassignChain(e) })
 
     this.fetchStepToPlay(this.renderNextStep.bind(this));
     this.missionText = "Loading..."
@@ -24,7 +28,8 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     "click #skip": "skip",
     "submit #step-form": "submit",
     "click #timeline-prev": "prevTimeline",
-    "click #timeline-next": "nextTimeline"
+    "click #timeline-next": "nextTimeline",
+    "click .step-image": "unassignChain"
   },
 
   createStepTimeline: function() {
@@ -247,5 +252,14 @@ DoodleOrDie.Views.RoomPlayView = Backbone.CompositeView.extend({
     }
 
     this.fetchStepToPlay(this.renderNextStep.bind(this));
+  },
+  
+  unassignChain: function (event) {
+    if(event.currentTarget.text === "Play")
+      return
+    
+    if (this.next_step.get("chain_id")) {
+      this.next_step.save(); //unassigns the chain
+    }
   }
 })

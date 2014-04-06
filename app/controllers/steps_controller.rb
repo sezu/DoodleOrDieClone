@@ -29,7 +29,6 @@ class StepsController < ApplicationController
   end
 
   def create
-    debugger
     @step = Step.new(step_params)
     @step.user_id = current_user.id
 

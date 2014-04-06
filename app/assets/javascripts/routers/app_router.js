@@ -7,7 +7,7 @@ DoodleOrDie.Routers.AppRouter = Backbone.Router.extend({
     "":  "frontPage",
     "rooms/:id/play": "roomPlay",
     "rooms/:id":  "roomShow",
-    "rooms":  "roomsIndex",
+    "rooms":  "roomsIndex", //currently not used
     "chains/:id": "chainShow",
     "users/:id": "userShow" //not implemented yet
   },
