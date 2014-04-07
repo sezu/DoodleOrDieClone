@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
     @chains = @room.chains.includes(:steps)
               .order(:updated_at)
               .reverse
-              .reject{ |chain| chain.steps.count < 3 }[index..index+2]
+              .reject{ |chain| chain.steps.count < 3 }
   end
 
   def create
