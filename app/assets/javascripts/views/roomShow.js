@@ -4,11 +4,12 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
   initialize: function(options) {
     Backbone.CompositeView.prototype.initialize.apply(this);
     this.listenTo(this.model, "sync", this.addChainPreviews);
+    this.loading = true;
   },
 
   render: function() {
-    var content = this.template({ room: this.model })
-    this.$el.html(content)
+    var content = this.template({ room: this.model, loading: this.loading })
+    this.$el.html(content);
 
     this.renderSubviews();
     return this;
@@ -41,6 +42,7 @@ DoodleOrDie.Views.RoomShowView = Backbone.CompositeView.extend({
 
     });
 
+    this.loading = false;
     this.render()
   }
 })

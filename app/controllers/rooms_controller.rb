@@ -6,8 +6,13 @@ class RoomsController < ApplicationController
   end
 
   def show
+    index = params[:index] || 0
+    
     @room = Room.find(params[:id])
-    @chains = @room.chains.includes(:steps).order(:updated_at).reverse
+    @chains = @room.chains.includes(:steps)
+              .order(:updated_at)
+              .reverse
+              .reject{ |chain| chain.steps.count < 3 }[index..index+2]
   end
 
   def create

@@ -1,4 +1,10 @@
-<div class="room-header"><%=room.escape("name")%></div>
+<div class="room-header">
+  <% if(loading) { %>
+    Loading...      
+  <% } else { %>
+    <%=room.escape("name")%>
+  <% } %>
+</div>
 
 <div id="chains"></div>
 
