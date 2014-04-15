@@ -46,9 +46,9 @@ body {
 }
 
 .lg-font:hover {
-  color: black;
+  color: #1A181B;
   text-decoration: none;
-  background-color:blue;
+  background-color: #E7E7E7;
 }
 
 .front-header {
@@ -67,6 +67,17 @@ body {
 .example {
   position: absolute;
   right: 0px;
+}
+
+.sign-up-form {
+  width: 250px;
+  margin: auto;
+  text-align: center;
+}
+
+.sign-up-header {
+  text-align: center;
+  font-size: 40px;
 }
 
 /* DRAWING AREA */

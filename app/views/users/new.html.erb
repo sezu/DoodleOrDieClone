@@ -1,32 +1,42 @@
-<h1>Sign Up</h1>
-<form action="<%=users_url%>" method="POST" accept-charset="utf-8">
-  <input type="hidden"
-         name="authenticity_token"
-         value="<%=form_authenticity_token%>">
+<div class="sign-up-header">Sign Up</div>
 
-  <br>
+<br>
 
-  <label for="username">Username</label>
-  <input type="text" name="user[username]"
-         value="<%=@user.username%>" id="username">
+<div class="sign-up-form">  
+  <form action="<%=users_url%>" method="POST" accept-charset="utf-8">
+    <input type="hidden"
+           name="authenticity_token"
+           value="<%=form_authenticity_token%>">
 
-  <br>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" name="user[username]"
+           class="form-control"
+           value="<%=@user.username%>" id="username"
+           placeholder="Your Username">
+           
+  </div>
 
-  <label for="email">Email(optional)</label>
-  <input type="text" name="user[email]"
-         value="<%=@user.email%>" id="email">
+  <div class="form-group">
+    <label for="email">Email(optional)</label>
+    <input type="text" name="user[email]"
+           class="form-control" 
+           value="<%=@user.email%>" id="email"
+           placeholder="Yep. Optional.">
+  </div>
 
-  <br>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="user[password]" id="password"
+    placeholder="6 Char. Minimum">
+  </div>
 
-  <label for="password">Password</label>
-  <input type="password" name="user[password]" id="password">
+  <div class="form-group">
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" class="form-control" name="user[password2]" id="confirm_password"
+    placeholder="Same">
+  </div>
 
-  <br>
-
-  <label for="confirm_password">Confirm Password</label>
-  <input type="password" name="user[password2]" id="confirm_password">
-
-  <br>
-
-  <p><input type="submit" value="Sign Up"></p>
-</form>
+    <p><input class="btn-primary animate-thing" type="submit" value="Sign Up"></p>
+  </form>
+</div>
